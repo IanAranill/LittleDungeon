@@ -64,8 +64,9 @@ int main()
             PG.exp += mostro.GS;
             if(isTreasure)
             {
-                cout << "BRAVO! *pacca di lode sulla spalla*" << endl;
-                //randTesoro();
+                Treasure treasure;
+                PG.armi.push_back(treasure.randWeapon());
+                cout << "Aprendo la cassa trovi: " << PG.armi.back().description << endl;
             }
             if(PG.exp >= (int)PG.livello*1.5)
             {

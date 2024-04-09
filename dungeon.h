@@ -40,23 +40,37 @@ enum class Mostri_GS3
 class Weapon
 {
 private:
-    int num_dice;
-    int max_dice;
+    
 public:
     static const Weapon Arco_Lungo;
     static const Weapon Spada_Lunga;
     static const Weapon Ascia_Bipenne;
     static const Weapon Flauto;
     static const Weapon Bastoncino;
+    static const Weapon Arco_Corto;
+    static const Weapon Lancia;
+    static const Weapon Mazzafrusto;
+    static const Weapon Pergamena_Fulmine;
+    static const Weapon Alabarda;
 
     dmg_type tipo;
     int bonus;
     bool isMelee;
     string description;
+    int num_dice;
+    int max_dice;
 
     Weapon(const string& description_, dmg_type tipo_,int bonus_, int num_dice_, int max_dice_, bool isMelee_ = true)
         : description(description_), tipo(tipo_), bonus(bonus_), num_dice(num_dice_), max_dice(max_dice_), isMelee(isMelee_) {}
     int damage();
+};
+
+class Treasure
+{
+public:
+    static const vector<Weapon> weapons;
+
+    Weapon randWeapon();
 };
 
 class Creature
