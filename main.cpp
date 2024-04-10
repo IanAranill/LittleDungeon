@@ -15,16 +15,36 @@ int main()
     Hero PG = intro();
     cout << "Scendendo nel dungeon ..." << endl;
     
+    bool stanzeMin = false;
+    bool stanzeMax = false;
     for(int piano = 1; piano <= nPiani; ++piano){
         int nStanze;
         bool isBoss = false;
+
+        //calcolo stanze
         if(piano == nPiani)
         {
             nStanze = 1;
             isBoss = true;
         }
         else
-            nStanze = randRange(1, nPiani);
+        {
+            nStanze = randRange(2, nPiani);
+            if(stanzeMin)
+            {
+                nStanze = min(nPiani, nStanze+1);
+                stanzeMin = false;
+            }
+            if(stanzeMax)
+            {
+                nStanze = max(2, nStanze-1);
+                stanzeMax = false;
+            }
+            if(nStanze == 2)
+                stanzeMin = true;
+            if(nStanze == nPiani)
+                stanzeMax = true;
+        }
 
         cout << "\n\n" << PG.nome << ", sei sceso al piano -" << piano << endl;
         cout << "In questo piano del dungeon ci sono " << nStanze << " stanze" << endl;
