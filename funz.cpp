@@ -72,8 +72,8 @@ void turn(Hero& PG, Creature& mostro)
                 }
             }
             cout << "Colpisci " << mostro.nome << " con forza e gli hai inflitto " << dmg << " danni" 
-                << (resistant ? ", ma noti che " + mostro.nome + " riduce una parte dei danni subiti" : "")
-                << (vulnerable ? ", ma noti che " + mostro.nome + " subisce più danni" : "") << endl;
+                << (resistant ? ", ma noti che " + mostro.nome + " ha ridotto una parte dei danni subiti" : "")
+                << (vulnerable ? ", ma noti che " + mostro.nome + " ha subito più danni" : "") << endl;
 
             mostro.currentDmg += dmg;
         }
@@ -135,22 +135,20 @@ void turn(Hero& PG, Creature& mostro)
                 }
             PG.currentDmg += dmg;
         }
-        cout << "Il " << mostro.nome << " ti attacca e ";
+        cout << mostro.nome << " ti attacca";
+        if(mostro.isChecked)
+                cout << " con " << mostro.armi[i].description;
+        cout << " e ";
         if(isHit)
         {
-            cout << "ti colpisce";
-            if(mostro.isChecked)
-                cout << " con " << mostro.armi[i].description;
-            cout << " infliggendoti " << dmg << " danni";
+            cout << "ti colpisce infliggendoti " << dmg << " danni";
             if(resistant)
                 cout << ", ma sei resistente (danno dimezzato)";
             if(vulnerable)
                 cout << ", ma sei vulnerabile (danno dimezzato)";
         }
         else
-        {
             cout << "ti manca";
-        }
         cout << endl;
     }
     if(isDefensive)

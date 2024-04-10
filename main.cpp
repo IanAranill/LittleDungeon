@@ -4,7 +4,7 @@ int main()
 {
     srand(time(NULL));
     char ingr;
-    int nPiani = 3;
+    int nPiani = randRange(3, 5);
     cout << "Benvenuto avventuriero, sei pronto ad affrontare il piccolo Dungeon? \n (y/n): ";
     cin >> ingr;
     if (ingr != 'y')
@@ -20,21 +20,19 @@ int main()
         if(piano == nPiani)
             nStanze = 1;
         else
-            nStanze = piano + randRange(0, piano);
+            nStanze = randRange(1, nPiani);
 
         cout << "\n\n" << PG.nome << ", sei sceso al piano -" << piano << endl;
         for(int i = 0; i < nStanze; ++i){
             srand(time(NULL));
-            Creature mostro;
-            try
-            {
-                mostro = RandMostro(piano);
-            }
-            catch(const string& err)
-            {
-                cerr << err << endl;
-            }
-            //da implementare mostri multipli, rendere colpibili con armi melee solo il primo e con le ranged tutti a scelta
+            int maxGS = 3;
+            float percDiff = piano/(nPiani-1) * maxGS;
+            float percGSvecchio = (ceil(percDiff) - percDiff) * (i+1) / nStanze;
+            //TODO dare l'effettivo gs del mostro in questione in base a numeri precedenti
+            int gs = piano; 
+            Creature mostro = RandMostro(gs);
+
+            //TODO implementare mostri multipli, rendere colpibili con armi melee solo il primo e con le ranged tutti a scelta
             bool isTreasure = true;
             if(piano == 1)
                 isTreasure = (bool)randRange(0, 1);
@@ -84,9 +82,10 @@ int main()
                             }
                         }
                         if(alreadyFound)
-                            cout << " di nuovo, quindi lo lasci indietro" << endl;
+                            cout << " di nuovo, quindi lo lasci indietro";
                         else
                             PG.armi.push_back(weaponLoot);
+                        cout << endl;
                     }
 
                 }

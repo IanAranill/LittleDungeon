@@ -13,7 +13,7 @@ Hero intro(){
         do{
             cout << "Chi sei avventuriero?" << '\n'
             << "1) Un agile elfo delle foreste, un arciere eccellente" << '\n'
-            << "2) Un prode umano, uno spadaccino fomidabile" << '\n'
+            << "2) Un prode umano, uno spadaccino formidabile" << '\n'
             << "3) Un cocciuto nano delle montagne, pochi vogliono affrontare la sua ascia" << '\n'
             << "Scegi il tuo eroe: ";
             cin >> choice;
