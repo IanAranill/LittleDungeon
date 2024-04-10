@@ -99,11 +99,11 @@ void turn(Hero& PG, Creature& mostro)
         else
             cout << mostro.HP << "hp" << endl;
         cout << "Tra " << mostro.AC - mostro.GS << " e " << mostro.AC + mostro.GS << "AC" << endl
-        << "E' resistente a: ";
+        << "È resistente a: ";
         for(dmg_type i:mostro.res) cout << dmg_type_to_string(i) << " ";
-        cout << endl << "E' vulnerabile a: ";
+        cout << endl << "È vulnerabile a: ";
         for(dmg_type i:mostro.vuln) cout << dmg_type_to_string(i) << " ";
-        cout << endl << "Attacca con: ";
+        cout << endl << "Può attaccare con: ";
         for(Weapon i:mostro.armi) cout << i.description << " ";
         cout << endl;
         mostro.isChecked = true;
@@ -113,22 +113,38 @@ void turn(Hero& PG, Creature& mostro)
     //per ora il mostro attacca e basta, in futuro implementare azioni diverse per i mostri 
     if(mostro.currentDmg >= mostro.HP)
         return;
-    for(int i = 0; i < mostro.armi.size(); ++i)
+    vector<Weapon> attackingWith;
+
+    //special feature regeneration
+    if(mostro.nome == "Troll" && mostro.currentDmg != 0)
+    {
+        mostro.currentDmg -= mostro.GS;
+        mostro.currentDmg = min(mostro.HP, mostro.HP - mostro.currentDmg);
+        if(mostro.isChecked)
+            cout << "Noti con orrore che le ferite inflitte al Troll si richiudono a vista d'occhio" << endl;
+    }
+
+    if(mostro.multiAttack)
+        attackingWith = mostro.armi;
+    else
+        attackingWith.push_back(mostro.armi[randRange(0, mostro.armi.size()-1)]);
+
+    for(int i = 0; i < attackingWith.size(); ++i)
     {
         bool isHit = false;
-        int dmg = mostro.armi[i].damage();
+        int dmg = attackingWith[i].damage();
         bool resistant = false, vulnerable = false;
-        if(randRange(1,20) + mostro.armi[i].bonus >= PG.AC)
+        if(randRange(1,20) + attackingWith[i].bonus + mostro.GS >= PG.AC)
         {
             isHit = true;
             for(dmg_type type : PG.res)
-                if(mostro.armi[i].tipo == type)
+                if(attackingWith[i].tipo == type)
                 {
                     resistant = true;
                     dmg = max(1, dmg/2);
                 }
             for(dmg_type type : PG.vuln)
-                if(mostro.armi[i].tipo == type)
+                if(attackingWith[i].tipo == type)
                 {
                     vulnerable = true;
                     dmg *= 2;
@@ -137,7 +153,7 @@ void turn(Hero& PG, Creature& mostro)
         }
         cout << mostro.nome << " ti attacca";
         if(mostro.isChecked)
-                cout << " con " << mostro.armi[i].description;
+                cout << " con " << attackingWith[i].description;
         cout << " e ";
         if(isHit)
         {

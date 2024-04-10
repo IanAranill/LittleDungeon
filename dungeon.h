@@ -22,18 +22,31 @@ enum class Mostri_GS1
 {
     ragno,
     goblin,
+    ratto_gigante,
     dimensione
 };
 
 enum class Mostri_GS2
 {
     scheletro,
+    zombie,
+    gnoll,
+    hobgoblin,
     dimensione
 };
 
 enum class Mostri_GS3
 {
+    bugbear,
+    goblin_stregone,
+    orco,
+    dimensione
+};
+
+enum class Mostri_Boss
+{
     drago,
+    troll,
     dimensione
 };
 
@@ -50,9 +63,14 @@ public:
     static const Weapon Arco_Corto;
     static const Weapon Lancia;
     static const Weapon Mazzafrusto;
-    static const Weapon Pergamena_Fulmine;
     static const Weapon Alabarda;
+    static const Weapon Pergamena_Fulmine;
+    static const Weapon Pergamena_Gelo_Profondo;
     static const Weapon Pergamena_Raggio_Gelo;
+    static const Weapon Martello_Guerra;
+    static const Weapon Lancia_Corta;
+    static const Weapon Mazza_Leggera;
+    static const Weapon Spadone;
 
     dmg_type tipo;
     int bonus;
@@ -89,6 +107,7 @@ public:
     vector<dmg_type> res;
     vector<dmg_type> vuln;
     vector<Weapon> armi;
+    bool multiAttack = true;
 };
 
 class Hero

@@ -17,29 +17,40 @@ int main()
     
     for(int piano = 1; piano <= nPiani; ++piano){
         int nStanze;
+        bool isBoss = false;
         if(piano == nPiani)
+        {
             nStanze = 1;
+            isBoss = true;
+        }
         else
             nStanze = randRange(1, nPiani);
 
         cout << "\n\n" << PG.nome << ", sei sceso al piano -" << piano << endl;
+        cout << "In questo piano del dungeon ci sono " << nStanze << " stanze" << endl;
         for(int i = 0; i < nStanze; ++i){
             srand(time(NULL));
+            Creature mostro;
+
+            //calcolo gs
             int maxGS = 3;
-            float percDiff = piano/(nPiani-1) * maxGS;
-            float percGSvecchio = (ceil(percDiff) - percDiff) * (i+1) / nStanze;
-            //TODO dare l'effettivo gs del mostro in questione in base a numeri precedenti
-            int gs = piano; 
-            Creature mostro = RandMostro(gs);
+            float maxGsPiano = piano/(nPiani-1) * maxGS;
+            float percGSmin = (ceil(maxGsPiano) - maxGsPiano) * (i+1) / nStanze;
+            int gs = max(1, (int)ceil(maxGsPiano) - (randRange(0, 100)/100 <= percGSmin));
 
-            //TODO implementare mostri multipli, rendere colpibili con armi melee solo il primo e con le ranged tutti a scelta
-            bool isTreasure = true;
-            if(piano == 1)
-                isTreasure = (bool)randRange(0, 1);
+            //controllo Boss
+            if(isBoss)
+                mostro = RandMostro(0);
+            else
+                mostro = RandMostro(gs);
+                //TODO implementare mostri multipli, rendere colpibili con armi melee solo il primo e con le ranged tutti a scelta
 
-            cout << "In questo piano del dungeon ci sono " << nStanze << " stanze" << endl
-                << "dopo essere entrato vedi che nella "<< i+1 << "-esima stanza del piano " 
-                << (isTreasure ? "ci sono un " + mostro.nome + " e una cassa con dentro del tesoro" : "c'è un " + mostro.nome) << endl;
+            bool isTreasure = randRange(0, 100)/100 <= gs / maxGS && piano != nPiani;
+            if(isBoss)
+                cout << "\nSei arrivato alla tana del \e[31mSignore del Piccolo Dungeon\e[0m, ora devi dimostrare chi sei veramente, affrontalo e scopri se hai veramente la stoffa dell'\e[32mEroe\e[0m" << endl;
+            else
+                cout << "\nEntri nella "<< i+1 << "-esima stanza del piano dove " 
+                    << (isTreasure ? "ci sono un " + mostro.nome + " e una cassa con dentro del tesoro" : "c'è un " + mostro.nome) << endl;
         //combattimento
 
             cout << '\n' + mostro.nome + " ti attacca" << endl;
@@ -49,12 +60,12 @@ int main()
 
             if(PG.HP <= PG.currentDmg)
             {
-                cout << "\e[31mSei stato sconfitto!\e[0m" << endl << "Oggi le tenebre hanno trionfato e il signore del Piccolo Dungeon regna sovrano nelle sue caverne" << endl;
+                cout << "\e[31mSei stato sconfitto!\e[0m" << endl << "Oggi le tenebre hanno trionfato e il Signore del Piccolo Dungeon regna sovrano nelle sue caverne" << endl;
                 return 0;
             }
             if(piano == nPiani)
             {
-                cout << "\e[32mHai Vinto!\e[0m" << endl << "Oggi la luce ha trionfato e il signore del Piccolo Dungeon è caduto davanti alla tua forza" << endl;
+                cout << "\e[32mComplimenti Eroe Hai Vinto!\e[0m" << endl << "Oggi la luce ha trionfato e il signore del Piccolo Dungeon è caduto davanti alla tua forza" << endl;
                 return 0;
             }
             cout << "Hai vinto!" << endl << "Hai sconfitto il " << mostro.nome << "!" << endl;
@@ -92,10 +103,11 @@ int main()
                 
             }
             //passaggio livello
-            if(PG.exp >= (int)PG.livello*1.5)
+            int nextLevel = PG.livello*1.5+1;
+            if(PG.exp >= nextLevel)
             {
                 cout <<"\n\nHai accumulato abbastanza esperienza per passare di livello!" << endl << "liv " << PG.livello << " -> " << PG.livello + 1 << "\n\n" << endl;
-                PG.exp -= PG.livello;
+                PG.exp -= nextLevel;
                 PG.HP*=5.0/4.0;
                 PG.AC++;
                 PG.currentDmg -= PG.livello*5; 
