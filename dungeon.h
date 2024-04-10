@@ -1,10 +1,9 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include <random>
-#include <time.h>
 #include <string>
-#include <fstream>
+#include <math.h>
+#include <time.h>
 using namespace std;
 
 enum dmg_type
@@ -138,6 +137,7 @@ public:
 };
 
 int randRange(int, int);
+bool get_int(int&);
 Creature RandMostro(int);
 Creature Generate(Mostri_GS1 nome_mostro);
 Creature Generate(Mostri_GS2 nome_mostro);

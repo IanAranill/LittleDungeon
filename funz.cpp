@@ -16,7 +16,11 @@ void turn(Hero& PG, Creature& mostro)
         << "2) Difendersi e bendare le proprie ferite\n"
         << "3) Osservare il " << mostro.nome << " per ottenere più informazioni" << endl;
         cout << "- ";
-        cin >> chosenAct;
+        if(!get_int(chosenAct))
+        {
+            cout << "Errore, ritentare comando" << endl;
+            continue;
+        }
 
         if(chosenAct > 0 && chosenAct < 4)
             break;
@@ -44,7 +48,12 @@ void turn(Hero& PG, Creature& mostro)
                     << arma.num_dice << "d" << arma.max_dice << ", colpire: +" << arma.bonus + PG.livello << endl;
             }
             cout << "- ";
-            cin >> chosenWeapon;
+            if(!get_int(chosenWeapon))
+            {
+                cout << "Errore, ritentare comando" << endl;
+                continue;
+            }
+
             if(chosenWeapon >= 1 && chosenWeapon <= PG.armi.size())
                 break;
 
@@ -119,7 +128,7 @@ void turn(Hero& PG, Creature& mostro)
     if(mostro.nome == "Troll" && mostro.currentDmg != 0)
     {
         mostro.currentDmg -= mostro.GS;
-        mostro.currentDmg = min(mostro.HP, mostro.HP - mostro.currentDmg);
+        mostro.currentDmg = max(0, mostro.currentDmg);
         if(mostro.isChecked)
             cout << "Noti con orrore che le ferite inflitte al Troll si richiudono a vista d'occhio" << endl;
     }
@@ -172,6 +181,17 @@ void turn(Hero& PG, Creature& mostro)
         isDefensive = false;
         PG.AC -= PG.livello;
     }
+}
+
+bool get_int(int& choice)
+{
+    string buffer;
+    cin >> buffer;
+    for(char c : buffer)
+        if(!isdigit(c))
+            return false;
+    choice = stoi(buffer);
+    return true;
 }
 
 dmg_type string_to_dmg_type(const string& str)
