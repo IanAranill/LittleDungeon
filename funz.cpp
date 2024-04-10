@@ -71,7 +71,7 @@ void turn(Hero& PG, Creature& mostro)
                     dmg *= 2;
                 }
             }
-            cout << "Colpisci il " << mostro.nome << " con forza e gli hai inflitto " << dmg << " danni" 
+            cout << "Colpisci " << mostro.nome << " con forza e gli hai inflitto " << dmg << " danni" 
                 << (resistant ? ", ma noti che " + mostro.nome + " riduce una parte dei danni subiti" : "")
                 << (vulnerable ? ", ma noti che " + mostro.nome + " subisce più danni" : "") << endl;
 
@@ -101,7 +101,7 @@ void turn(Hero& PG, Creature& mostro)
         cout << "Tra " << mostro.AC - mostro.GS << " e " << mostro.AC + mostro.GS << "AC" << endl
         << "E' resistente a: ";
         for(dmg_type i:mostro.res) cout << dmg_type_to_string(i) << " ";
-        cout << "E' vulnerabile a: ";
+        cout << endl << "E' vulnerabile a: ";
         for(dmg_type i:mostro.vuln) cout << dmg_type_to_string(i) << " ";
         cout << endl << "Attacca con: ";
         for(Weapon i:mostro.armi) cout << i.description << " ";

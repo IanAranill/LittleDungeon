@@ -62,12 +62,37 @@ int main()
             cout << "Hai vinto!" << endl << "Hai sconfitto il " << mostro.nome << "!" << endl;
         //ricompense
             PG.exp += mostro.GS;
+            //tesoro
             if(isTreasure)
             {
-                Treasure treasure;
-                PG.armi.push_back(treasure.randWeapon());
-                cout << "Aprendo la cassa trovi: " << PG.armi.back().description << endl;
+                cout << "Aprendo la cassa trovi: ";
+                //int typeLoot = randRange(1,3); //per ora il tesoro sono solo armi
+                int typeLoot = 1;
+                switch(typeLoot)
+                {
+                    case 1: //treasure is a weapon
+                    {
+                        bool alreadyFound = false;
+                        Weapon weaponLoot = Treasure().randWeapon();
+                        cout << weaponLoot.description;
+                        for(Weapon w : PG.armi)
+                        {
+                            if(w.description == weaponLoot.description)
+                            {
+                                alreadyFound = true;
+                                break;
+                            }
+                        }
+                        if(alreadyFound)
+                            cout << " di nuovo, quindi lo lasci indietro" << endl;
+                        else
+                            PG.armi.push_back(weaponLoot);
+                    }
+
+                }
+                
             }
+            //passaggio livello
             if(PG.exp >= (int)PG.livello*1.5)
             {
                 cout <<"\n\nHai accumulato abbastanza esperienza per passare di livello!" << endl << "liv " << PG.livello << " -> " << PG.livello + 1 << "\n\n" << endl;

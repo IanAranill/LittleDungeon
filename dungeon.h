@@ -60,18 +60,20 @@ public:
     string description;
     int num_dice;
     int max_dice;
+    int rarity;
 
-    Weapon(const string& description_, dmg_type tipo_,int bonus_, int num_dice_, int max_dice_, bool isMelee_ = true)
-        : description(description_), tipo(tipo_), bonus(bonus_), num_dice(num_dice_), max_dice(max_dice_), isMelee(isMelee_) {}
+    Weapon(const string& description_, dmg_type tipo_,int bonus_, int num_dice_, int max_dice_, bool isMelee_ = true, int rarity_ = 1)
+        : description(description_), tipo(tipo_), bonus(bonus_), num_dice(num_dice_), max_dice(max_dice_), isMelee(isMelee_), rarity(rarity_) {}
     int damage();
 };
 
 class Treasure
 {
 public:
-    static const vector<Weapon> weapons;
+    static vector<Weapon> weapons;
 
     Weapon randWeapon();
+    Treasure();
 };
 
 class Creature

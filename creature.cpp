@@ -9,7 +9,7 @@ Creature Generate(Mostri_GS1 nome_mostro)
             tmp.AC = 12;
             tmp.HP = randRange(3, 8);
             tmp.GS = 1;
-            tmp.nome = "ragno";
+            tmp.nome = "Ragno";
             tmp.res = {Acido};
             tmp.armi = {
                 Weapon("Zanne di ragno", Perforante, tmp.GS, 1, 6)
@@ -19,7 +19,7 @@ Creature Generate(Mostri_GS1 nome_mostro)
             tmp.AC = 14;
             tmp.HP = randRange(2, 6);
             tmp.GS = 1;
-            tmp.nome = "goblin";
+            tmp.nome = "Goblin";
             tmp.res = {Tagliente};
             tmp.armi = {
                 Weapon("Lancia di legno", Perforante, tmp.GS, 1, 6)
@@ -38,7 +38,7 @@ Creature Generate(Mostri_GS2 nome_mostro)
             tmp.AC = 12;
             tmp.HP = randRange(4, 12);
             tmp.GS = 2;
-            tmp.nome = "scheletro";
+            tmp.nome = "Scheletro";
             tmp.res = {Tagliente, Perforante};
             tmp.vuln = {Contundente};
             tmp.armi = {
@@ -59,7 +59,7 @@ Creature Generate(Mostri_GS3 nome_mostro)
             tmp.AC = 18;
             tmp.HP = randRange(30, 45);
             tmp.GS = 3;
-            tmp.nome = "drago";
+            tmp.nome = "Drago";
             tmp.res = {Tagliente, Contundente, Fuoco};
             tmp.vuln = {Gelo};
             tmp.armi = {
