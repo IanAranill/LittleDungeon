@@ -10,4 +10,3 @@ release:
 	g++ $(option) $(files) -o LittleDungeon_linux
 	x86_64-w64-mingw32-g++ $(option) $(files) -o LittleDungeon_win_x86_64
 	i686-w64-mingw32-g++ $(option) $(files) -o LittleDungeon_win_x86_32
-	zip source.zip *.cpp *.h

@@ -4,6 +4,13 @@
 #include <string>
 #include <math.h>
 #include <time.h>
+
+#ifdef _WIN32
+#define CLEAR "cls"
+#else //In any other OS
+#define CLEAR "clear"
+#endif
+
 using namespace std;
 
 enum dmg_type

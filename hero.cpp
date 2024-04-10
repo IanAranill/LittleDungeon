@@ -22,7 +22,7 @@ Hero intro(){
             if(!get_int(choice))
                 Er = true;
 
-            system("clear");
+            system(CLEAR);
         }while(Er || (choice <= 0 && choice > 3 && choice != 69 && choice != 104));
         stats(choice, PG);
         cout << "\nVuoi inoltrarti nel dungeon con questo eroe?\n"
@@ -32,12 +32,12 @@ Hero intro(){
         if(!get_int(choice))
             Er = true;
 
-        system("clear");
+        system(CLEAR);
     }while(Er || choice != 1);
     cout << "Come si chiama il tuo eroe?" << endl;
     cin.ignore(9999, '\n');
     getline(cin, PG.nome);
-    system("clear");
+    system(CLEAR);
     return PG;
 }
 
