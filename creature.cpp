@@ -40,6 +40,7 @@ Creature Generate(Mostri_GS2 nome_mostro)
             tmp.GS = 2;
             tmp.nome = "scheletro";
             tmp.res = {Tagliente, Perforante};
+            tmp.vuln = {Contundente};
             tmp.armi = {
                 Weapon("Artiglio", Tagliente, tmp.GS, 1, 4),
                 Weapon("Artiglio", Tagliente, tmp.GS, 1, 4)
@@ -60,6 +61,7 @@ Creature Generate(Mostri_GS3 nome_mostro)
             tmp.GS = 3;
             tmp.nome = "drago";
             tmp.res = {Tagliente, Contundente, Fuoco};
+            tmp.vuln = {Gelo};
             tmp.armi = {
                 Weapon("Fauci del Drago", Perforante, tmp.GS+2, 2, 6),
                 Weapon("Artiglio del Drago", Tagliente, tmp.GS+1, 1, 6),

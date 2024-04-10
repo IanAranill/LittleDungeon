@@ -56,15 +56,24 @@ void turn(Hero& PG, Creature& mostro)
         if(PG.toHit(chosenWeapon) >= mostro.AC)
         {
             short dmg = PG.armi[chosenWeapon].damage();
-            bool resistant = false;
+            bool resistant = false, vulnerable = false;
             for(dmg_type type : mostro.res)
                 if(PG.armi[chosenWeapon].tipo == type)
                 {
                     resistant = true;
                     dmg = max(1, dmg/2);
                 }
+            for(dmg_type type : mostro.vuln)
+            {
+                if(PG.armi[chosenWeapon].tipo == type)
+                {
+                    vulnerable = true;
+                    dmg *= 2;
+                }
+            }
             cout << "Colpisci il " << mostro.nome << " con forza e gli hai inflitto " << dmg << " danni" 
-                << (resistant ? ", ma noti che " + mostro.nome + " riduce una parte dei danni subiti" : "") << endl;
+                << (resistant ? ", ma noti che " + mostro.nome + " riduce una parte dei danni subiti" : "")
+                << (vulnerable ? ", ma noti che " + mostro.nome + " subisce più danni" : "") << endl;
 
             mostro.currentDmg += dmg;
         }
@@ -92,6 +101,8 @@ void turn(Hero& PG, Creature& mostro)
         cout << "Tra " << mostro.AC - mostro.GS << " e " << mostro.AC + mostro.GS << "AC" << endl
         << "E' resistente a: ";
         for(dmg_type i:mostro.res) cout << dmg_type_to_string(i) << " ";
+        cout << "E' vulnerabile a: ";
+        for(dmg_type i:mostro.vuln) cout << dmg_type_to_string(i) << " ";
         cout << endl << "Attacca con: ";
         for(Weapon i:mostro.armi) cout << i.description << " ";
         cout << endl;
@@ -106,7 +117,7 @@ void turn(Hero& PG, Creature& mostro)
     {
         bool isHit = false;
         int dmg = mostro.armi[i].damage();
-        bool resistant = false;
+        bool resistant = false, vulnerable = false;
         if(randRange(1,20) + mostro.armi[i].bonus >= PG.AC)
         {
             isHit = true;
@@ -115,6 +126,12 @@ void turn(Hero& PG, Creature& mostro)
                 {
                     resistant = true;
                     dmg = max(1, dmg/2);
+                }
+            for(dmg_type type : PG.vuln)
+                if(mostro.armi[i].tipo == type)
+                {
+                    vulnerable = true;
+                    dmg *= 2;
                 }
             PG.currentDmg += dmg;
         }
@@ -127,6 +144,8 @@ void turn(Hero& PG, Creature& mostro)
             cout << " infliggendoti " << dmg << " danni";
             if(resistant)
                 cout << ", ma sei resistente (danno dimezzato)";
+            if(vulnerable)
+                cout << ", ma sei vulnerabile (danno dimezzato)";
         }
         else
         {

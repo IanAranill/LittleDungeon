@@ -12,6 +12,7 @@ const Weapon Weapon::Mazzafrusto("Mazzafrusto", Contundente, 0, 1, 10, true);
 const Weapon Weapon::Pergamena_Fulmine("Pergamena di Fulmine", Elettrico, 3, 2, 6, false);
 const Weapon Weapon::Alabarda("Alabarda", Tagliente, 0, 1, 10, true);
 const Weapon Weapon::Arco_Corto("Arco Corto", Perforante, 1, 1, 6, false);
+const Weapon Weapon::Pergamena_Raggio_Gelo("Pergamena di Raggio di Gelo", Gelo, 0, 1, 6, false);
 
 int Weapon::damage()
 {

@@ -1,10 +1,10 @@
 #include "dungeon.h"
 
-const Hero Hero::Elfo(15, 16, {Weapon::Arco_Lungo}, {Elettrico});
-const Hero Hero::Umano(18, 16, {Weapon::Spada_Lunga}, {});
-const Hero Hero::Nano(20, 14, {Weapon::Ascia_Bipenne}, {Contundente});
-const Hero Hero::Omomo(15, 15, {Weapon::Flauto}, {Perforante});
-const Hero Hero::Cretino(15, 14, {Weapon::Bastoncino}, {});
+const Hero Hero::Elfo(15, 16, {Weapon::Arco_Lungo}, {Elettrico}, {Acido});
+const Hero Hero::Umano(18, 16, {Weapon::Spada_Lunga}, {}, {});
+const Hero Hero::Nano(20, 14, {Weapon::Ascia_Bipenne}, {Contundente}, {Fuoco});
+const Hero Hero::Omomo(15, 15, {Weapon::Flauto}, {Perforante}, {Tagliente});
+const Hero Hero::Cretino(15, 14, {Weapon::Bastoncino}, {}, {});
 
 Hero intro(){
     unsigned int choice;
@@ -76,6 +76,9 @@ void Hero::printStats()
     cout <<"\nResistenze: ";
     for(dmg_type dmg : res)
         cout << dmg_type_to_string(dmg) << (dmg != res.back() ? ", " : "");
+    cout <<"\nVulnerabilità: ";
+    for(dmg_type dmg : vuln)
+        cout << dmg_type_to_string(dmg) << (dmg != vuln.back() ? ", " : "");
     cout << endl;
     return;
 }

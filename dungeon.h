@@ -52,6 +52,7 @@ public:
     static const Weapon Mazzafrusto;
     static const Weapon Pergamena_Fulmine;
     static const Weapon Alabarda;
+    static const Weapon Pergamena_Raggio_Gelo;
 
     dmg_type tipo;
     int bonus;
@@ -84,6 +85,7 @@ public:
     short GS;
     bool isChecked = false;
     vector<dmg_type> res;
+    vector<dmg_type> vuln;
     vector<Weapon> armi;
 };
 
@@ -103,11 +105,12 @@ public:
     string nome;
     int livello;
     vector<dmg_type> res;
+    vector<dmg_type> vuln;
     int exp;
     vector<Weapon> armi;
 
-    Hero(const int HP_, const int AC_, vector<Weapon> armi_, vector<dmg_type> res_, int livello_ = 1, int exp_ = 0) 
-        : HP(HP_), AC(AC_), armi(armi_), res(res_), livello(livello_), exp(exp_) {}
+    Hero(const int HP_, const int AC_, vector<Weapon> armi_, vector<dmg_type> res_, vector<dmg_type> vuln_, int livello_ = 1, int exp_ = 0) 
+        : HP(HP_), AC(AC_), armi(armi_), res(res_), vuln(vuln_), livello(livello_), exp(exp_) {}
     Hero() {}
     int toHit(int);
     void printStats();
