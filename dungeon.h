@@ -12,7 +12,7 @@
 #else //In any other OS
 #define CHCP ""
 #define CLEAR "clear"
-#define PAUSE "read -n1 -r -p \"Press any key to continue...\" key"
+#define PAUSE "read -r -p \"Press enter to continue...\" key"
 #endif
 
 using namespace std;
@@ -98,7 +98,7 @@ public:
 class Treasure
 {
 public:
-    static vector<Weapon> weapons;
+    vector<Weapon> weapons;
 
     Weapon randWeapon();
     Treasure();

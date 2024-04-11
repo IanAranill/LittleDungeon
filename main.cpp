@@ -18,7 +18,7 @@ int main()
 
     srand(time(NULL));
     char ingr;
-    int nPiani = randRange(3, 5);
+    int nPiani = randRange(4, 6);
     cout << "Benvenuto avventuriero, sei pronto ad affrontare il piccolo Dungeon? \n (y/n): ";
     cin >> ingr;
     if (ingr != 'y')
@@ -104,14 +104,14 @@ int main()
                 system(PAUSE);
                 return 0;
             }
-            cout << "Hai vinto!" << endl << "Hai sconfitto il " << mostro.nome << "!" << endl;
+            cout << "Hai vinto!" << endl << "Hai sconfitto " << mostro.nome << "!" << endl;
         //ricompense
             PG.exp += mostro.GS;
             //tesoro
             if(isTreasure)
             {
                 cout << "Aprendo la cassa trovi: ";
-                //int typeLoot = randRange(1,3); //per ora il tesoro sono solo armi
+                //int typeLoot = randRange(1,3); //per ora il tesoro sono solo armi, poi anche armature e oggetti uso singolo
                 int typeLoot = 1;
                 switch(typeLoot)
                 {

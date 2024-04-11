@@ -27,11 +27,3 @@ const Hero Hero::Umano(18, 16, {Weapon::Spada_Lunga}, {}, {});
 const Hero Hero::Nano(20, 14, {Weapon::Ascia_Bipenne}, {Contundente}, {Fuoco});
 const Hero Hero::Omomo(15, 15, {Weapon::Flauto}, {Perforante}, {Tagliente});
 const Hero Hero::Cretino(15, 14, {Weapon::Bastoncino}, {}, {});
-
-/*Lootable weapons*/
-vector<Weapon> Treasure::weapons({
-    Weapon::Arco_Corto, Weapon::Lancia, Weapon::Mazzafrusto, Weapon::Pergamena_Fulmine,
-    Weapon::Alabarda, Weapon::Arco_Lungo, Weapon::Spada_Lunga, Weapon::Ascia_Bipenne,
-    Weapon::Pergamena_Raggio_Gelo, Weapon::Pergamena_Gelo_Profondo, Weapon::Spadone,
-    Weapon::Mazza_Leggera, Weapon::Lancia_Corta, Weapon::Martello_Guerra
-});
