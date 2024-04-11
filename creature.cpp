@@ -53,7 +53,7 @@ Creature Generate(Mostri_GS2 nome_mostro)
             tmp.HP = randRange(4, 12);
             tmp.GS = 2;
             tmp.nome = "Scheletro";
-            tmp.res = {Tagliente, Perforante};
+            tmp.res = {Tagliente, Perforante, Gelo};
             tmp.vuln = {Contundente};
             tmp.armi = {
                 Weapon("Artiglio", Tagliente, 0, 1, 4),
@@ -65,7 +65,7 @@ Creature Generate(Mostri_GS2 nome_mostro)
             tmp.HP = randRange(8, 20);
             tmp.GS = 2;
             tmp.nome = "Zombie";
-            tmp.res = {Contundente, Perforante};
+            tmp.res = {Contundente, Perforante, Gelo};
             tmp.vuln = {Tagliente};
             tmp.armi = {
                 Weapon("Morso", Perforante, 0, 1, 6),
@@ -155,8 +155,8 @@ Creature Generate(Mostri_Boss nome_mostro)
             tmp.vuln = {Gelo};
             tmp.armi = {
                 Weapon("Fauci del Drago", Perforante, +4, 2, 6),
-                Weapon("Artiglio del Drago", Tagliente, +3, 1, 6),
-                Weapon("Artiglio del Drago", Tagliente, +3, 1, 6),
+                Weapon("Artiglio", Tagliente, +3, 1, 6),
+                Weapon("Artiglio", Tagliente, +3, 1, 6),
                 Weapon("Colpo di Coda", Contundente, +1, 1, 10)
             };
             break;

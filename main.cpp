@@ -1,7 +1,10 @@
 #include "dungeon.h"
 
+
+
 int main()
 {
+    system(CHCP);
     system(CLEAR);
 
     //ASCII art, DON'T TOUCH!!!
@@ -92,11 +95,13 @@ int main()
             if(PG.HP <= PG.currentDmg)
             {
                 cout << "\e[31mSei stato sconfitto!\e[0m" << endl << "Oggi le tenebre hanno trionfato e il Signore del Piccolo Dungeon regna sovrano nelle sue caverne" << endl;
+                system(PAUSE);
                 return 0;
             }
             if(piano == nPiani)
             {
                 cout << "\e[32mComplimenti Eroe Hai Vinto!\e[0m" << endl << "Oggi la luce ha trionfato e il signore del Piccolo Dungeon è caduto davanti alla tua forza" << endl;
+                system(PAUSE);
                 return 0;
             }
             cout << "Hai vinto!" << endl << "Hai sconfitto il " << mostro.nome << "!" << endl;

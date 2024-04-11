@@ -1,11 +1,5 @@
 #include "dungeon.h"
 
-const Hero Hero::Elfo(15, 16, {Weapon::Arco_Lungo}, {Elettrico}, {Acido});
-const Hero Hero::Umano(18, 16, {Weapon::Spada_Lunga}, {}, {});
-const Hero Hero::Nano(20, 14, {Weapon::Ascia_Bipenne}, {Contundente}, {Fuoco});
-const Hero Hero::Omomo(15, 15, {Weapon::Flauto}, {Perforante}, {Tagliente});
-const Hero Hero::Cretino(15, 14, {Weapon::Bastoncino}, {}, {});
-
 Hero intro(){
     int choice;
     Hero PG;
@@ -27,7 +21,7 @@ Hero intro(){
         stats(choice, PG);
         cout << "\nVuoi inoltrarti nel dungeon con questo eroe?\n"
             << "1) Che l'avventura abbia inizio!\n"
-            << "2) Quali è che sono gli altri?\n"
+            << "2) Quali sono gli altri?\n"
             << "Scegli con cautela: ";
         if(!get_int(choice))
             Er = true;

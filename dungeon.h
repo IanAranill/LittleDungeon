@@ -7,8 +7,12 @@
 
 #ifdef _WIN32
 #define CLEAR "cls"
+#define PAUSE "pause"
+#define CHCP "chcp 65001"
 #else //In any other OS
+#define CHCP ""
 #define CLEAR "clear"
+#define PAUSE "read -n1 -r -p \"Press any key to continue...\" key"
 #endif
 
 using namespace std;
@@ -86,7 +90,7 @@ public:
     int max_dice;
     int rarity;
 
-    Weapon(const string& description_, dmg_type tipo_,int bonus_, int num_dice_, int max_dice_, bool isMelee_ = true, int rarity_ = 1)
+    Weapon(const string& description_, dmg_type tipo_,int bonus_, int num_dice_, int max_dice_, bool isMelee_ = true, int rarity_ = 0)
         : description(description_), tipo(tipo_), bonus(bonus_), num_dice(num_dice_), max_dice(max_dice_), isMelee(isMelee_), rarity(rarity_) {}
     int damage();
 };

@@ -170,7 +170,7 @@ void turn(Hero& PG, Creature& mostro)
             if(resistant)
                 cout << ", ma sei resistente (danno dimezzato)";
             if(vulnerable)
-                cout << ", ma sei vulnerabile (danno dimezzato)";
+                cout << ", ma sei vulnerabile (danno raddoppiato)";
         }
         else
             cout << "ti manca";
