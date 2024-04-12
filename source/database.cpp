@@ -29,3 +29,4 @@ const Hero Hero::Umano(18, 16, {Weapon::Spada_Lunga}, {}, {});
 const Hero Hero::Nano(20, 14, {Weapon::Ascia_Bipenne}, {Contundente}, {Fuoco});
 const Hero Hero::Omomo(15, 15, {Weapon::Flauto}, {Perforante}, {Tagliente});
 const Hero Hero::Cretino(15, 14, {Weapon::Bastoncino}, {}, {});
+

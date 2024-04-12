@@ -4,6 +4,10 @@
 
 int main()
 {
+    const int maxPiani = 6;
+    const int minPiani = 3;
+    const int maxStanze = 5;
+
     system(CHCP);
     system(CLEAR);
 
@@ -18,7 +22,7 @@ int main()
 
     srand(time(NULL));
     char ingr;
-    int nPiani = randRange(4, 6);
+    int nPiani = randRange(minPiani, maxPiani);
     cout << "Benvenuto avventuriero, sei pronto ad affrontare il piccolo Dungeon? \n (y/n): ";
     cin >> ingr;
     if (ingr != 'y')
@@ -43,7 +47,7 @@ int main()
         }
         else
         {
-            nStanze = randRange(2, nPiani);
+            nStanze = randRange(2, maxStanze);
             if(stanzeMin)
             {
                 nStanze = min(nPiani, nStanze+1);
@@ -69,11 +73,11 @@ int main()
             //calcolo gs
             //TODO fix GS
             int maxGS = 3;
-            float maxGsPiano = piano/(nPiani-1) * maxGS;
+            float maxGsPiano = piano/(nPiani-1.0) * maxGS;
             float percGSmin = 1 - (ceil(maxGsPiano) - maxGsPiano) * (i+1) / nStanze;
             if(percGSmin == 1)
                 percGSmin = 0;
-            int gs = max(1, (int)ceil(maxGsPiano) - (randRange(0, 100)/100 <= percGSmin));
+            int gs = max(1, (int)ceil(maxGsPiano) - (randRange(0, 100)/100.0 <= percGSmin));
 
             //controllo Boss
             if(isBoss)
