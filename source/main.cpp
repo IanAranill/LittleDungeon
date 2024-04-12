@@ -71,7 +71,6 @@ int main()
             Creature mostro;
 
             //calcolo gs
-            //TODO fix GS
             int maxGS = 3;
             float maxGsPiano = piano/(nPiani-1.0) * maxGS;
             float percGSmin = 1 - (ceil(maxGsPiano) - maxGsPiano) * (i+1) / nStanze;
@@ -126,8 +125,8 @@ int main()
                     {
                         bool alreadyFound = false;
                         Weapon weaponLoot = Treasure().randWeapon();
-                        cout << weaponLoot.description;
-                        for(Weapon w : PG.armi)
+                        cout << weaponLoot.description << " ";
+                        for(Weapon w : PG.inventario.armi)
                         {
                             if(w.description == weaponLoot.description)
                             {
@@ -136,9 +135,22 @@ int main()
                             }
                         }
                         if(alreadyFound)
-                            cout << " di nuovo, quindi lo lasci indietro";
+                            cout << " ma ce l'hai già, quindi lo lasci indietro";
                         else
-                            PG.armi.push_back(weaponLoot);
+                        {
+                            if(PG.inventario.numArmi == PG.inventario.armi.size())
+                            {
+                                weaponLoot.printStats(PG.livello);
+                                PG.pick_up_weapon(weaponLoot);
+                            }
+                            else
+                            {
+                                PG.inventario.armi.push_back(weaponLoot);
+                                cout << " e lo raccogli" << endl;
+                            }
+                                
+                        }
+                            
                         cout << endl;
                     }
 
@@ -153,7 +165,7 @@ int main()
                 PG.exp -= nextLevel;
                 PG.HP*=5.0/4.0;
                 PG.AC++;
-                PG.currentDmg -= PG.livello*5; 
+                PG.currentDmg -= PG.livello*4; 
                 if (PG.currentDmg < 0)
                     PG.currentDmg = 0;
                 PG.livello++;

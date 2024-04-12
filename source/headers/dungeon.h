@@ -99,6 +99,7 @@ public:
     Weapon(const string& description_, dmg_type tipo_,int bonus_, int num_dice_, int max_dice_, bool isMelee_ = true, int rarity_ = 0)
         : description(description_), tipo(tipo_), bonus(bonus_), num_dice(num_dice_), max_dice(max_dice_), isMelee(isMelee_), rarity(rarity_) {}
     int damage();
+    void printStats(const int);
 };
 
 class Treasure
@@ -130,6 +131,17 @@ public:
     void turn(Hero&);
 };
 
+class Inventory
+{
+private:
+public:
+    int numArmi;
+    vector<Weapon> armi;
+
+    Inventory(const int numArmi_, vector<Weapon> armi_) : numArmi(numArmi_), armi(armi_) {}
+    Inventory() {}
+};
+
 class Hero
 {
 private:
@@ -148,17 +160,18 @@ public:
     vector<dmg_type> res;
     vector<dmg_type> vuln;
     int exp;
-    vector<Weapon> armi;
+    Inventory inventario;
     int currentWeaponIndex;
 
-    Hero(const int HP_, const int AC_, vector<Weapon> armi_, vector<dmg_type> res_, vector<dmg_type> vuln_, int livello_ = 1, int exp_ = 0) 
-        : HP(HP_), AC(AC_), armi(armi_), res(res_), vuln(vuln_), livello(livello_), exp(exp_) {}
+    Hero(const int HP_, const int AC_, Inventory inventario_, vector<dmg_type> res_, vector<dmg_type> vuln_, int livello_ = 1, int exp_ = 0) 
+        : HP(HP_), AC(AC_), inventario(inventario_), res(res_), vuln(vuln_), livello(livello_), exp(exp_) {}
     Hero() {}
     int toHit();
     void printStats();
     void defense(bool&);
     void chooseWeapon();
     int chooseAct(const string&);
+    void pick_up_weapon(Weapon);
 };
 
 int randRange(int, int);

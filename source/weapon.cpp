@@ -7,3 +7,10 @@ int Weapon::damage()
         tmp += randRange(1, max_dice);
     return tmp;
 }
+
+void Weapon::printStats(const int livello)
+{
+    cout << description << " -> " << "tipo: " << dmg_type_to_string(tipo) << ", danno: " 
+        << num_dice << "d" << max_dice << ", colpire: +" << bonus + livello << endl;
+    return;
+}

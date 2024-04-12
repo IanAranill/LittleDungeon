@@ -17,11 +17,11 @@ void turn(Hero& PG, Creature& mostro)
         //colpire
         if(PG.toHit() >= mostro.AC)
         {
-            short dmg = PG.armi[PG.currentWeaponIndex].damage();
-            mostro.hit(dmg, PG.armi[PG.currentWeaponIndex].tipo);
+            short dmg = PG.inventario.armi[PG.currentWeaponIndex].damage();
+            mostro.hit(dmg, PG.inventario.armi[PG.currentWeaponIndex].tipo);
         }
         else
-            cout << "L'hai mancato con " << PG.armi[PG.currentWeaponIndex].description << endl;
+            cout << "L'hai mancato con " << PG.inventario.armi[PG.currentWeaponIndex].description << endl;
         break;
     case 2://difesa
         PG.defense(isDefensive);

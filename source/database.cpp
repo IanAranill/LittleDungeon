@@ -24,9 +24,9 @@ const Weapon Weapon::Bacchetta_Freccia_Melf("Bacchetta di Freccia Acida di Melf"
 const Weapon Weapon::Bacchetta_Raggio_Fuoco("Bacchetta di Raggio di Fuoco", Fuoco, 2, 1, 10, false, 3);
 
 /*HEROES*/
-const Hero Hero::Elfo(15, 16, {Weapon::Arco_Lungo}, {Elettrico}, {Acido});
-const Hero Hero::Umano(18, 16, {Weapon::Spada_Lunga}, {}, {});
-const Hero Hero::Nano(20, 14, {Weapon::Ascia_Bipenne}, {Contundente}, {Fuoco});
-const Hero Hero::Omomo(15, 15, {Weapon::Flauto}, {Perforante}, {Tagliente});
-const Hero Hero::Cretino(15, 14, {Weapon::Bastoncino}, {}, {});
+const Hero Hero::Elfo(15, 16, Inventory(4, {Weapon::Arco_Lungo}), {Elettrico}, {Acido});
+const Hero Hero::Umano(18, 16, Inventory(5, {Weapon::Spada_Lunga}), {}, {});
+const Hero Hero::Nano(20, 14, Inventory(4, {Weapon::Ascia_Bipenne}), {Contundente}, {Fuoco});
+const Hero Hero::Omomo(15, 15, Inventory(5, {Weapon::Flauto}), {Perforante}, {Tagliente});
+const Hero Hero::Cretino(15, 14, Inventory(5, {Weapon::Bastoncino}), {}, {});
 

@@ -64,7 +64,7 @@ void Hero::defense(bool& isDefensive)
 {
     unsigned int cura = randRange(livello, livello*6);
     AC += livello;
-    cout << "\nTieni la guardia alta (+" << livello << " AC) e guarisci le tue ferite di " << cura << endl;
+    cout << "\nTieni la guardia alta (+" << livello*3/2 << " AC) e guarisci le tue ferite di " << cura << endl;
     currentDmg -= cura;
     currentDmg = max(0, currentDmg);
     isDefensive = true;
@@ -73,21 +73,21 @@ void Hero::defense(bool& isDefensive)
 
 void Hero::chooseWeapon()
 {
-    if(armi.size() == 1)
+    if(inventario.armi.size() == 1)
     {
         currentWeaponIndex = 0;
         return;
     }
     cout << "\nSelezionare un arma con cui attaccare: " << endl;
-    for(int i = 0; i < armi.size(); ++i)
+    for(int i = 0; i < inventario.armi.size(); ++i)
     {
-        Weapon arma = armi[i];
+        Weapon arma = inventario.armi[i];
         cout << i+1 << ") " << arma.description << " -> " << "tipo: " << dmg_type_to_string(arma.tipo) << ", danno: " 
             << arma.num_dice << "d" << arma.max_dice << ", colpire: +" << arma.bonus + livello << endl;
     }
     cout << "- ";
 
-    if(!get_int(currentWeaponIndex) || currentWeaponIndex < 1 || currentWeaponIndex > armi.size())
+    if(!get_int(currentWeaponIndex) || currentWeaponIndex < 1 || currentWeaponIndex > inventario.armi.size())
     {
         cout << "\e[31mL'arma selezionata non esiste, ritentare!\e[0m" << endl;
         chooseWeapon();
@@ -115,7 +115,7 @@ int Hero::chooseAct(const string& nemico)
 
 int Hero::toHit()
 {
-    return randRange(1, 20) + livello + armi[currentWeaponIndex].bonus;
+    return randRange(1, 20) + livello + inventario.armi[currentWeaponIndex].bonus;
 }
 
 void Hero::printStats()
@@ -123,10 +123,11 @@ void Hero::printStats()
     cout << "\nHP: " << HP
     << "\nAC: " << AC 
     << "\nLivello: " << livello
-    << "\nExp: " << exp << endl;
+    << "\nExp: " << exp
+    << "\nDimensione Inventario: " << inventario.numArmi << endl;
     cout << "Armi: ";
-    for(Weapon w : armi)
-        cout << w.description << (w.description != armi.back().description ? ", " : "");
+    for(Weapon w : inventario.armi)
+        cout << w.description << (w.description != inventario.armi.back().description ? ", " : "");
     cout <<"\nResistenze: ";
     for(dmg_type dmg : res)
         cout << dmg_type_to_string(dmg) << (dmg != res.back() ? ", " : "");
@@ -135,4 +136,21 @@ void Hero::printStats()
         cout << dmg_type_to_string(dmg) << (dmg != vuln.back() ? ", " : "");
     cout << endl;
     return;
+}
+
+void Hero::pick_up_weapon(Weapon weaponLoot)
+{
+    cout << "non puoi trasportare altre armi, cosa vuoi fare?" << endl;
+    for(int i = 1; i <= inventario.armi.size(); ++i)
+    {
+        cout << i << ") sostituire "; 
+        inventario.armi[i-1].printStats(livello); 
+        cout << " con " << weaponLoot.description << '\n' << endl;
+    }
+    int choice;
+    if(!get_int(choice) || choice <= 0 || choice >= inventario.armi.size())
+    {
+        cout << "\e[31mL'arma selezionata non esiste, ritentare!\e[0m" << endl;
+        pick_up_weapon(weaponLoot);
+    }
 }
