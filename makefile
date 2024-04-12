@@ -1,4 +1,4 @@
-files = weapon.cpp funz.cpp main.cpp hero.cpp creature.cpp treasure.cpp database.cpp
+files = ./source/*.cpp
 option = -std=c++14 -static-libstdc++ -static-libgcc -static -w
 compile:
 	g++ $(option) $(files) -o gioco

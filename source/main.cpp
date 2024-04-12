@@ -1,4 +1,4 @@
-#include "dungeon.h"
+#include "headers/dungeon.h"
 
 
 
@@ -67,9 +67,12 @@ int main()
             Creature mostro;
 
             //calcolo gs
+            //TODO fix GS
             int maxGS = 3;
             float maxGsPiano = piano/(nPiani-1) * maxGS;
-            float percGSmin = (ceil(maxGsPiano) - maxGsPiano) * (i+1) / nStanze;
+            float percGSmin = 1 - (ceil(maxGsPiano) - maxGsPiano) * (i+1) / nStanze;
+            if(percGSmin == 1)
+                percGSmin = 0;
             int gs = max(1, (int)ceil(maxGsPiano) - (randRange(0, 100)/100 <= percGSmin));
 
             //controllo Boss

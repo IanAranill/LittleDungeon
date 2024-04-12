@@ -17,6 +17,10 @@
 
 using namespace std;
 
+class Weapon;
+class Hero;
+class Treasure;
+
 enum dmg_type
 {
     Tagliente,
@@ -74,9 +78,11 @@ public:
     static const Weapon Lancia;
     static const Weapon Mazzafrusto;
     static const Weapon Alabarda;
-    static const Weapon Pergamena_Fulmine;
-    static const Weapon Pergamena_Gelo_Profondo;
-    static const Weapon Pergamena_Raggio_Gelo;
+    static const Weapon Bacchetta_Fulmine;
+    static const Weapon Bacchetta_Gelo_Profondo;
+    static const Weapon Bacchetta_Raggio_Gelo;
+    static const Weapon Bacchetta_Freccia_Melf;
+    static const Weapon Bacchetta_Raggio_Fuoco;
     static const Weapon Martello_Guerra;
     static const Weapon Lancia_Corta;
     static const Weapon Mazza_Leggera;
@@ -118,6 +124,10 @@ public:
     vector<dmg_type> vuln;
     vector<Weapon> armi;
     bool multiAttack = true;
+
+    void observed();
+    void hit(short&, dmg_type);
+    void turn(Hero&);
 };
 
 class Hero
@@ -139,12 +149,16 @@ public:
     vector<dmg_type> vuln;
     int exp;
     vector<Weapon> armi;
+    int currentWeaponIndex;
 
     Hero(const int HP_, const int AC_, vector<Weapon> armi_, vector<dmg_type> res_, vector<dmg_type> vuln_, int livello_ = 1, int exp_ = 0) 
         : HP(HP_), AC(AC_), armi(armi_), res(res_), vuln(vuln_), livello(livello_), exp(exp_) {}
     Hero() {}
-    int toHit(int);
+    int toHit();
     void printStats();
+    void defense(bool&);
+    void chooseWeapon();
+    int chooseAct(const string&);
 };
 
 int randRange(int, int);

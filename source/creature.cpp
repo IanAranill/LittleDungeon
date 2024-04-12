@@ -1,4 +1,4 @@
-#include "dungeon.h"
+#include "headers/dungeon.h"
 
 
 Creature Generate(Mostri_GS1 nome_mostro)
@@ -191,5 +191,98 @@ Creature RandMostro(int GS)
             return Generate(static_cast<Mostri_GS3>(randRange(0, (int)Mostri_GS3::dimensione-1)));
         default:
             throw(string) "Error104 Mostro mal generato";
+    }
+}
+
+void Creature::observed()
+{
+    if(isChecked)
+            cout << "\nIn più a quello che avevi già osservato noti che gli rimangono " << HP - currentDmg << " pf" << endl;
+    cout << "Il " << nome << " ha:" << endl;
+    if(!isChecked)
+        cout << "Tra " << HP - GS << " e " << HP + GS << "hp" << endl;
+    else
+        cout << HP << "hp" << endl;
+    cout << "Tra " << AC - GS << " e " << AC + GS << "AC" << endl
+    << "È resistente a: ";
+    for(dmg_type i:res) cout << dmg_type_to_string(i) << " ";
+    cout << endl << "È vulnerabile a: ";
+    for(dmg_type i:vuln) cout << dmg_type_to_string(i) << " ";
+    cout << endl << "Può attaccare con: ";
+    for(Weapon i:armi) cout << i.description << " ";
+    cout << endl;
+    isChecked = true;
+    return;
+}
+
+void Creature::hit(short& dmg, dmg_type atkType)
+{
+    bool resistant = false, vulnerable = false;
+    for(dmg_type type : res)
+        if(atkType == type)
+        {
+            resistant = true;
+            dmg = max(1, dmg/2);
+        }
+    for(dmg_type type : vuln)
+    {
+        if(atkType == type)
+        {
+            vulnerable = true;
+            dmg *= 2;
+        }
+    }
+    cout << "Colpisci " << nome << " con forza e gli hai inflitto " << dmg << " danni" 
+        << (resistant ? ", ma noti che " + nome + " ha ridotto una parte dei danni subiti" : "")
+        << (vulnerable ? ", e noti che " + nome + " ha subito più danni" : "") << endl;
+
+    currentDmg += dmg;
+}
+
+void Creature::turn(Hero& PG)
+{
+    vector<Weapon> attackingWith;
+    if(multiAttack)
+        attackingWith = armi;
+    else
+        attackingWith.push_back(armi[randRange(0, armi.size()-1)]);
+        
+    for(int i = 0; i < attackingWith.size(); ++i)
+    {
+        bool isHit = false;
+        int dmg = attackingWith[i].damage();
+        bool resistant = false, vulnerable = false;
+        if(randRange(1,20) + attackingWith[i].bonus + GS >= PG.AC)
+        {
+            isHit = true;
+            for(dmg_type type : PG.res)
+                if(attackingWith[i].tipo == type)
+                {
+                    resistant = true;
+                    dmg = max(1, dmg/2);
+                }
+            for(dmg_type type : PG.vuln)
+                if(attackingWith[i].tipo == type)
+                {
+                    vulnerable = true;
+                    dmg *= 2;
+                }
+            PG.currentDmg += dmg;
+        }
+        cout << nome << " ti attacca";
+        if(isChecked)
+                cout << " con " << attackingWith[i].description;
+        cout << " e ";
+        if(isHit)
+        {
+            cout << "ti colpisce infliggendoti " << dmg << " danni";
+            if(resistant)
+                cout << ", ma sei resistente (danno dimezzato)";
+            if(vulnerable)
+                cout << ", ma sei vulnerabile (danno raddoppiato)";
+        }
+        else
+            cout << "ti manca";
+        cout << endl;
     }
 }

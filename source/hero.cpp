@@ -1,4 +1,4 @@
-#include "dungeon.h"
+#include "headers/dungeon.h"
 
 Hero intro(){
     int choice;
@@ -60,9 +60,62 @@ void stats(unsigned int choosen, Hero& PG)
     return;
 }
 
-int Hero::toHit(int WeaponIndex)
+void Hero::defense(bool& isDefensive)
 {
-    return randRange(1, 20) + livello + armi[WeaponIndex].bonus;
+    unsigned int cura = randRange(livello, livello*6);
+    AC += livello;
+    cout << "\nTieni la guardia alta (+" << livello << " AC) e guarisci le tue ferite di " << cura << endl;
+    currentDmg -= cura;
+    currentDmg = max(0, currentDmg);
+    isDefensive = true;
+    return;
+}
+
+void Hero::chooseWeapon()
+{
+    if(armi.size() == 1)
+    {
+        currentWeaponIndex = 0;
+        return;
+    }
+    cout << "\nSelezionare un arma con cui attaccare: " << endl;
+    for(int i = 0; i < armi.size(); ++i)
+    {
+        Weapon arma = armi[i];
+        cout << i+1 << ") " << arma.description << " -> " << "tipo: " << dmg_type_to_string(arma.tipo) << ", danno: " 
+            << arma.num_dice << "d" << arma.max_dice << ", colpire: +" << arma.bonus + livello << endl;
+    }
+    cout << "- ";
+
+    if(!get_int(currentWeaponIndex) || currentWeaponIndex < 1 || currentWeaponIndex > armi.size())
+    {
+        cout << "\e[31mL'arma selezionata non esiste, ritentare!\e[0m" << endl;
+        chooseWeapon();
+    }
+    currentWeaponIndex--;
+    return;
+}
+
+int Hero::chooseAct(const string& nemico)
+{
+    int chosenAct;
+    cout << '\n' << nome <<  ", " << livello << "°liv, ha " << HP - currentDmg << "/" << HP << "hp e " << AC << "ac" << endl;
+    cout << "Scegli che azione vuoi fare:\n"
+    << "1) Attaccare\n"
+    << "2) Difendersi e bendare le proprie ferite\n"
+    << "3) Osservare il " << nemico << " per ottenere più informazioni" << endl;
+    cout << "- ";
+    if(!get_int(chosenAct) || chosenAct <= 0 || chosenAct >= 4)
+    {
+        cout << "\e[31mL'azione selezionata non esiste, ritentare!\e[0m" << endl;
+        return chooseAct(nemico);
+    }
+    return chosenAct;
+}
+
+int Hero::toHit()
+{
+    return randRange(1, 20) + livello + armi[currentWeaponIndex].bonus;
 }
 
 void Hero::printStats()

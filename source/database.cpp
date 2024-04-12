@@ -1,4 +1,4 @@
-#include "dungeon.h"
+#include "headers/dungeon.h"
 
 /*WEAPONS*/
 //rarity algorithm -> 1 per ogni classe di dado sopra il d8, 1 per ogni punto di bonus (si possono scambiare i "punti tra bonu e classi dado")
@@ -17,9 +17,11 @@ const Weapon Weapon::Martello_Guerra("Martello da Guerra", Contundente, 1, 1, 8,
 const Weapon Weapon::Lancia_Corta("Lancia Corta", Perforante, 1, 1, 6, true);
 const Weapon Weapon::Mazza_Leggera("Mazza Leggera", Contundente, 1, 1, 6, true);
 const Weapon Weapon::Spadone("Spada a due mani", Tagliente, 1, 2, 6, true, 3);
-const Weapon Weapon::Pergamena_Fulmine("Pergamena di Fulmine", Elettrico, 3, 2, 6, false, 5);
-const Weapon Weapon::Pergamena_Raggio_Gelo("Pergamena di Raggio di Gelo", Gelo, 2, 1, 6, false, 2);
-const Weapon Weapon::Pergamena_Gelo_Profondo("Pergamena di di Gelo Profondo", Gelo, 2, 1, 10, false, 4);
+const Weapon Weapon::Bacchetta_Fulmine("Bacchetta di Fulmine", Elettrico, 3, 2, 6, false, 5);
+const Weapon Weapon::Bacchetta_Raggio_Gelo("Bacchetta di Raggio di Gelo", Gelo, 2, 1, 6, false, 1);
+const Weapon Weapon::Bacchetta_Gelo_Profondo("Bacchetta di Gelo Profondo", Gelo, 2, 1, 10, false, 3);
+const Weapon Weapon::Bacchetta_Freccia_Melf("Bacchetta di Freccia Acida di Melf", Acido, 2, 2, 6, false, 4);
+const Weapon Weapon::Bacchetta_Raggio_Fuoco("Bacchetta di Raggio di Fuoco", Fuoco, 2, 1, 10, false, 3);
 
 /*HEROES*/
 const Hero Hero::Elfo(15, 16, {Weapon::Arco_Lungo}, {Elettrico}, {Acido});
