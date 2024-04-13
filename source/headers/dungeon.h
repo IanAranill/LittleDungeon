@@ -37,6 +37,7 @@ enum class Mostri_GS1
     ragno,
     goblin,
     ratto_gigante,
+    bandito,
     dimensione
 };
 
@@ -61,6 +62,7 @@ enum class Mostri_Boss
 {
     drago,
     troll,
+    orco_capoguerra,
     dimensione
 };
 
@@ -72,7 +74,7 @@ public:
     static const Weapon Arco_Lungo;
     static const Weapon Spada_Lunga;
     static const Weapon Ascia_Bipenne;
-    static const Weapon Flauto;
+    static const Weapon Liuto;
     static const Weapon Bastoncino;
     static const Weapon Arco_Corto;
     static const Weapon Lancia;
@@ -87,6 +89,9 @@ public:
     static const Weapon Lancia_Corta;
     static const Weapon Mazza_Leggera;
     static const Weapon Spadone;
+    static const Weapon Scimitarra;
+    static const Weapon Balestra_Leggera;
+    static const Weapon Balestra_Pesante;
 
     dmg_type tipo;
     int bonus;
@@ -146,10 +151,11 @@ class Hero
 {
 private:
 public:
-    static const Hero Elfo;
-    static const Hero Umano;
-    static const Hero Nano;
-    static const Hero Omomo;
+    static const Hero Ranger;
+    static const Hero Guerriero;
+    static const Hero Barbaro;
+    static const Hero Bardo;
+    static const Hero Mago;
     static const Hero Cretino;
 
     int HP;
@@ -180,8 +186,8 @@ Creature RandMostro(int);
 Creature Generate(Mostri_GS1 nome_mostro);
 Creature Generate(Mostri_GS2 nome_mostro);
 Creature Generate(Mostri_GS3 nome_mostro);
-Hero intro();
+Hero chooseHero();
 void stats(unsigned int, Hero&);
 void turn(Hero&, Creature&);
 dmg_type string_to_dmg_type(const string&);
-string dmg_type_to_string(const dmg_type& type);
+string dmg_type_to_string(const dmg_type&);

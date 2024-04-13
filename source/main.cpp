@@ -31,7 +31,7 @@ int main()
         cout << "Addio avventuriero, torna se vuoi conquistare il titolo di Eroe!"<< endl;
         return 0;
     }
-    Hero PG = intro();
+    Hero PG = chooseHero();
     cout << "Scendendo nel dungeon ..." << endl;
     
     bool stanzeMin = false;

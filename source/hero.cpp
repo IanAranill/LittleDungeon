@@ -1,6 +1,6 @@
 #include "headers/dungeon.h"
 
-Hero intro(){
+Hero chooseHero(){
     int choice;
     Hero PG;
     bool Er;
@@ -12,16 +12,18 @@ Hero intro(){
             << "1) Un agile elfo delle foreste, un arciere eccellente" << '\n'
             << "2) Un prode umano, uno spadaccino formidabile" << '\n'
             << "3) Un cocciuto nano delle montagne, pochi vogliono affrontare la sua ascia" << '\n'
+            << "4) Un mezzelfo mago capace di grandi incantesimi" << '\n'
+            << "5) Una giovane donna che grazie ai poteri magici che risveglia con la musica può affrontare molti pericoli" << '\n'
             << "Scegi il tuo eroe: ";
             if(!get_int(choice))
                 Er = true;
 
             system(CLEAR);
-        }while(Er || (choice <= 0 && choice > 3 && choice != 69 && choice != 104));
+        }while(Er || (choice <= 0 && choice > 5 && choice != 69 && choice != 104));
         stats(choice, PG);
         cout << "\nVuoi inoltrarti nel dungeon con questo eroe?\n"
             << "1) Che l'avventura abbia inizio!\n"
-            << "2) Quali sono gli altri?\n"
+            << "2) Voglio cambiare\n"
             << "Scegli con cautela: ";
         if(!get_int(choice))
             Er = true;
@@ -41,16 +43,19 @@ void stats(unsigned int choosen, Hero& PG)
     switch (choosen)
     {
     case 1:
-        PG = Hero::Elfo;
+        PG = Hero::Ranger;
         break;
     case 2:
-        PG = Hero::Umano;
+        PG = Hero::Guerriero;
         break;
     case 3:
-        PG = Hero::Nano;
+        PG = Hero::Barbaro;
         break;
-    case 69:
-        PG = Hero::Omomo;
+    case 4:
+        PG = Hero::Mago;
+        break;
+    case 5:
+        PG = Hero::Bardo;
         break;
     case 104:
         PG = Hero::Cretino;
@@ -63,7 +68,7 @@ void stats(unsigned int choosen, Hero& PG)
 void Hero::defense(bool& isDefensive)
 {
     unsigned int cura = randRange(2, 4) * livello;
-    AC += livello * 2/3;
+    AC += max(1, livello * 2/3);
     cout << "\nTieni la guardia alta (+" << livello*2/3 << " AC) e guarisci le tue ferite di " << cura << endl;
     currentDmg -= cura;
     currentDmg = max(0, currentDmg);
@@ -125,15 +130,19 @@ void Hero::printStats()
     << "\nLivello: " << livello
     << "\nExp: " << exp
     << "\nDimensione Inventario: " << inventario.numArmi << endl;
+
     cout << "Armi: ";
-    for(Weapon w : inventario.armi)
-        cout << w.description << (w.description != inventario.armi.back().description ? ", " : "");
+    for(int i = 0; i < inventario.armi.size(); ++i)
+        cout << inventario.armi[i].description << (i < inventario.armi.size()-1 ? ", " : "");
+    
     cout <<"\nResistenze: ";
-    for(dmg_type dmg : res)
-        cout << dmg_type_to_string(dmg) << (dmg != res.back() ? ", " : "");
+    for(int i = 0; i < res.size(); ++i)
+        cout << dmg_type_to_string(res[i]) << (i < res.size()-1 ? ", " : "");
+
     cout <<"\nVulnerabilità: ";
-    for(dmg_type dmg : vuln)
-        cout << dmg_type_to_string(dmg) << (dmg != vuln.back() ? ", " : "");
+    for(int i = 0; i < vuln.size(); ++i)
+        cout << dmg_type_to_string(vuln[i]) << (i < vuln.size()-1 ? ", " : "");
+
     cout << endl;
     return;
 }

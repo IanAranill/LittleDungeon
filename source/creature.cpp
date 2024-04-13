@@ -9,7 +9,7 @@ Creature Generate(Mostri_GS1 nome_mostro)
     {
         case Mostri_GS1::ragno:
             tmp.AC = 12 + difference;
-            tmp.HP = randRange(3, 8);
+            tmp.HP = randRange(4, 10);
             tmp.GS = 1;
             tmp.nome = "Ragno";
             tmp.res = {Acido};
@@ -20,7 +20,7 @@ Creature Generate(Mostri_GS1 nome_mostro)
         case Mostri_GS1::goblin:
         {
             tmp.AC = 14 + difference;
-            tmp.HP = randRange(2, 6);
+            tmp.HP = randRange(4, 8);
             tmp.GS = 1;
             tmp.nome = "Goblin";
             tmp.res = {Contundente};
@@ -30,7 +30,7 @@ Creature Generate(Mostri_GS1 nome_mostro)
         }
         case Mostri_GS1::ratto_gigante:
             tmp.AC = 11 + difference;
-            tmp.HP = randRange(2, 7);
+            tmp.HP = randRange(4, 9);
             tmp.GS = 1;
             tmp.nome = "Ratto Gigante";
             tmp.res = {Acido, Perforante};
@@ -38,6 +38,17 @@ Creature Generate(Mostri_GS1 nome_mostro)
                 Weapon("Zanne di ratto", Perforante, 1, 1, 4)
             };
             break;
+        case Mostri_GS1::bandito:
+        {
+            tmp.AC = 13 + difference;
+            tmp.HP = randRange(5, 10);
+            tmp.GS = 1;
+            tmp.nome = "Bandito";
+            tmp.res = {};
+            vector<Weapon> BanditWeapons = {Weapon::Lancia, Weapon::Arco_Corto, Weapon::Mazza_Leggera, Weapon::Scimitarra, Weapon::Balestra_Leggera};
+            tmp.armi.push_back(BanditWeapons[randRange(0,BanditWeapons.size()-1)]);
+            break;
+        }
     }
     return tmp;
 }
@@ -50,7 +61,7 @@ Creature Generate(Mostri_GS2 nome_mostro)
     {
         case Mostri_GS2::scheletro:
             tmp.AC = 12 + difference;
-            tmp.HP = randRange(4, 12);
+            tmp.HP = randRange(6, 14);
             tmp.GS = 2;
             tmp.nome = "Scheletro";
             tmp.res = {Tagliente, Perforante, Gelo};
@@ -62,20 +73,20 @@ Creature Generate(Mostri_GS2 nome_mostro)
             break;
         case Mostri_GS2::zombie:
             tmp.AC = 10 + difference;
-            tmp.HP = randRange(8, 20);
+            tmp.HP = randRange(10, 20);
             tmp.GS = 2;
             tmp.nome = "Zombie";
             tmp.res = {Contundente, Perforante, Gelo};
             tmp.vuln = {Tagliente};
             tmp.armi = {
-                Weapon("Morso", Perforante, 0, 1, 6),
+                Weapon("Morso", Perforante, -1, 1, 6),
                 Weapon("Bava infetta", Acido, -1, 1, 4)
             };
             break;
         case Mostri_GS2::hobgoblin:
         {
             tmp.AC = 14 + difference;
-            tmp.HP = randRange(5, 9);
+            tmp.HP = randRange(9, 15);
             tmp.GS = 2;
             tmp.nome = "Hobgoblin";
             tmp.res = {Contundente};
@@ -86,7 +97,7 @@ Creature Generate(Mostri_GS2 nome_mostro)
         case Mostri_GS2::gnoll:
         {
             tmp.AC = 14 + difference;
-            tmp.HP = randRange(5, 13);
+            tmp.HP = randRange(10, 18);
             tmp.GS = 2;
             tmp.nome = "Gnoll";
             vector<Weapon> GnollWeapons = {Weapon::Mazzafrusto, Weapon::Martello_Guerra, Weapon::Alabarda};
@@ -107,7 +118,7 @@ Creature Generate(Mostri_GS3 nome_mostro)
         case Mostri_GS3::bugbear:
         {
             tmp.AC = 16 + difference;
-            tmp.HP = randRange(8, 20);
+            tmp.HP = randRange(12, 22);
             tmp.GS = 3;
             tmp.nome = "Bugbear";
             vector<Weapon> BugbearWeapons = {Weapon::Mazzafrusto, Weapon::Mazzafrusto, Weapon::Ascia_Bipenne, Weapon::Spadone};
@@ -116,7 +127,7 @@ Creature Generate(Mostri_GS3 nome_mostro)
         }
         case Mostri_GS3::orco:
             tmp.AC = 13 + difference;
-            tmp.HP = randRange(10, 18);
+            tmp.HP = randRange(16, 22);
             tmp.GS = 3;
             tmp.nome = "Orco";
             tmp.res = {Tagliente, Contundente, Perforante};
@@ -125,7 +136,7 @@ Creature Generate(Mostri_GS3 nome_mostro)
             break;
         case Mostri_GS3::goblin_stregone:
             tmp.AC = 17 + difference;
-            tmp.HP = randRange(3, 8);
+            tmp.HP = randRange(5, 10);
             tmp.GS = 3;
             tmp.nome = "Goblin Stregone";
             tmp.multiAttack = false;
@@ -173,6 +184,17 @@ Creature Generate(Mostri_Boss nome_mostro)
                 Weapon("Artiglio", Tagliente, +3, 2, 4)
             };
             break;
+        case Mostri_Boss::orco_capoguerra:
+        {
+            tmp.AC = 20 + difference;
+            tmp.HP = randRange(30, 40);
+            tmp.GS = 4;
+            tmp.nome = "Orco Capoguerra";
+            tmp.res = {Perforante, Contundente, Tagliente};
+            tmp.vuln = {};
+            tmp.armi = {Weapon("Spadone di Gruumsh", Tagliente, +4, 3, 8)};
+            break;
+        }
     }
     return tmp;
 }
@@ -196,20 +218,28 @@ Creature RandMostro(int GS)
 
 void Creature::observed()
 {
+    int difference = randRange(1, GS);
     if(isChecked)
             cout << "\nIn più a quello che avevi già osservato noti che gli rimangono " << HP - currentDmg << " pf" << endl;
     cout << "Il " << nome << " ha:" << endl;
     if(!isChecked)
-        cout << "Tra " << HP - GS << " e " << HP + GS << "hp" << endl;
+        cout << "Tra " << HP - difference << " e " << HP + difference << "hp" << endl;
     else
         cout << HP << "hp" << endl;
-    cout << "Tra " << AC - GS << " e " << AC + GS << "AC" << endl
+    cout << "Tra " << AC - difference << " e " << AC + difference << "AC" << endl
+    
     << "È resistente a: ";
-    for(dmg_type i:res) cout << dmg_type_to_string(i) << " ";
+    for(int i = 0; i < res.size(); ++i)
+        cout << dmg_type_to_string(res[i]) << (i < res.size()-1 ? ", " : "");
+
     cout << endl << "È vulnerabile a: ";
-    for(dmg_type i:vuln) cout << dmg_type_to_string(i) << " ";
+    for(int i = 0; i < vuln.size(); ++i)
+        cout << dmg_type_to_string(vuln[i]) << (i < res.size()-1 ? ", " : "");
+
     cout << endl << "Può attaccare con: ";
-    for(Weapon i:armi) cout << i.description << " ";
+    for(int i = 0; i < armi.size(); ++i)
+        cout << armi[i].description << (i < res.size()-1 ? ", " : "");
+
     cout << endl;
     isChecked = true;
     return;
