@@ -85,8 +85,8 @@ int main()
             else
                 mostro = RandMostro(gs);
                 //TODO implementare mostri multipli, rendere colpibili con armi melee solo il primo e con le ranged tutti a scelta
-
-            bool isTreasure = randRange(0, 100)/100.0 <= gs / maxGS && piano != nPiani;
+            float probTreasure = gs / maxGS * 2;
+            bool isTreasure = randRange(0, 100)/100.0 <= probTreasure && piano != nPiani;
             if(isBoss)
                 cout << "\nSei arrivato alla tana del \e[31mSignore del Piccolo Dungeon\e[0m, ora devi dimostrare chi sei veramente, affrontalo e scopri se hai veramente la stoffa dell'\e[32mEroe\e[0m" << endl;
             else
@@ -150,8 +150,7 @@ int main()
                                 cout << " e lo raccogli" << endl;
                             }
                                 
-                        }
-                            
+                        } 
                         cout << endl;
                     }
 
