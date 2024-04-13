@@ -140,17 +140,20 @@ void Hero::printStats()
 
 void Hero::pick_up_weapon(Weapon weaponLoot)
 {
-    cout << "non puoi trasportare altre armi, cosa vuoi fare?" << endl;
+    cout << "non puoi trasportare altre armi, cosa vuoi abbandonare?" << endl;
+    cout << "\n0) nulla" << endl;
     for(int i = 1; i <= inventario.armi.size(); ++i)
     {
-        cout << i << ") sostituire "; 
-        inventario.armi[i-1].printStats(livello); 
-        cout << " con " << weaponLoot.description << '\n' << endl;
+        cout << i << ") "; 
+        inventario.armi[i-1].printStats(livello);
     }
+    cout << "- ";
     int choice;
-    if(!get_int(choice) || choice <= 0 || choice >= inventario.armi.size())
+    if(!get_int(choice) || choice < 0 || choice > inventario.armi.size())
     {
         cout << "\e[31mL'arma selezionata non esiste, ritentare!\e[0m" << endl;
         pick_up_weapon(weaponLoot);
     }
+    if(choice)
+        inventario.armi[choice-1] = weaponLoot;
 }

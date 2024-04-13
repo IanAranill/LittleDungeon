@@ -116,7 +116,7 @@ int main()
             //tesoro
             if(isTreasure)
             {
-                cout << "Aprendo la cassa trovi: ";
+                cout << "\nAprendo la cassa trovi: ";
                 //int typeLoot = randRange(1,3); //per ora il tesoro sono solo armi, poi anche armature e oggetti uso singolo
                 int typeLoot = 1;
                 switch(typeLoot)
@@ -125,7 +125,6 @@ int main()
                     {
                         bool alreadyFound = false;
                         Weapon weaponLoot = Treasure().randWeapon();
-                        cout << weaponLoot.description << " ";
                         for(Weapon w : PG.inventario.armi)
                         {
                             if(w.description == weaponLoot.description)
@@ -135,7 +134,7 @@ int main()
                             }
                         }
                         if(alreadyFound)
-                            cout << " ma ce l'hai già, quindi lo lasci indietro";
+                            cout << weaponLoot.description << " ma ce l'hai già, quindi lo lasci indietro";
                         else
                         {
                             if(PG.inventario.numArmi == PG.inventario.armi.size())
@@ -145,6 +144,7 @@ int main()
                             }
                             else
                             {
+                                cout << weaponLoot.description;
                                 PG.inventario.armi.push_back(weaponLoot);
                                 cout << " e lo raccogli" << endl;
                             }
