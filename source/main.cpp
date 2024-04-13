@@ -6,7 +6,7 @@ int main()
 {
     const int maxPiani = 6;
     const int minPiani = 3;
-    const int maxStanze = 5;
+    const int maxStanze = 4;
 
     system(CHCP);
     system(CLEAR);
