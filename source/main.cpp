@@ -7,6 +7,7 @@ int main()
     const int maxPiani = 6;
     const int minPiani = 3;
     const int maxStanze = 4;
+    const int minStanze = 2;
 
     system(CHCP);
     system(CLEAR);
@@ -47,7 +48,7 @@ int main()
         }
         else
         {
-            nStanze = randRange(2, maxStanze);
+            nStanze = randRange(minStanze, maxStanze);
             if(stanzeMin)
             {
                 nStanze = min(nPiani, nStanze+1);

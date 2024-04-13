@@ -49,7 +49,7 @@ void turn(Hero& PG, Creature& mostro)
     if(isDefensive)
     {
         isDefensive = false;
-        PG.AC -= PG.livello;
+        PG.AC -= PG.livello * 2/3;
     }
 }
 

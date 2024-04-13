@@ -62,9 +62,9 @@ void stats(unsigned int choosen, Hero& PG)
 
 void Hero::defense(bool& isDefensive)
 {
-    unsigned int cura = randRange(livello, livello*6);
-    AC += livello;
-    cout << "\nTieni la guardia alta (+" << livello*3/2 << " AC) e guarisci le tue ferite di " << cura << endl;
+    unsigned int cura = randRange(2, 4) * livello;
+    AC += livello * 2/3;
+    cout << "\nTieni la guardia alta (+" << livello*2/3 << " AC) e guarisci le tue ferite di " << cura << endl;
     currentDmg -= cura;
     currentDmg = max(0, currentDmg);
     isDefensive = true;
@@ -103,7 +103,7 @@ int Hero::chooseAct(const string& nemico)
     cout << "Scegli che azione vuoi fare:\n"
     << "1) Attaccare\n"
     << "2) Difendersi e bendare le proprie ferite\n"
-    << "3) Osservare il " << nemico << " per ottenere più informazioni" << endl;
+    << "3) Osservare " << nemico << " per ottenere più informazioni" << endl;
     cout << "- ";
     if(!get_int(chosenAct) || chosenAct <= 0 || chosenAct >= 4)
     {
