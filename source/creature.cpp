@@ -161,7 +161,7 @@ Creature Generate(Mostri_Boss nome_mostro)
             };
             break;
         case Mostri_Boss::troll:
-            tmp.AC = 18 + difference;
+            tmp.AC = 16 + difference;
             tmp.HP = randRange(20, 35);
             tmp.GS = 4;
             tmp.nome = "Troll";
