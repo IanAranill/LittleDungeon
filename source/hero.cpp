@@ -1,68 +1,125 @@
 #include "headers/dungeon.h"
 
-Hero chooseHero(){
+void Hero::charCreation()
+{
+    bool Er = false;
     int choice;
-    Hero PG;
-    bool Er;
+    cout << "\nCreazione del Personaggio:" << endl;
     do{
         Er = false;
-        do{
-            Er = false;
-            cout << "Chi sei avventuriero?" << '\n'
-            << "1) Un agile elfo delle foreste, un arciere eccellente" << '\n'
-            << "2) Un prode umano, uno spadaccino formidabile" << '\n'
-            << "3) Un cocciuto nano delle montagne, pochi vogliono affrontare la sua ascia" << '\n'
-            << "4) Un mezzelfo mago capace di grandi incantesimi" << '\n'
-            << "5) Una giovane donna che grazie ai poteri magici che risveglia con la musica può affrontare molti pericoli" << '\n'
-            << "Scegi il tuo eroe: ";
-            if(!get_int(choice))
-                Er = true;
-
-            system(CLEAR);
-        }while(Er || (choice <= 0 && choice > 5 && choice != 69 && choice != 104));
-        stats(choice, PG);
-        cout << "\nVuoi inoltrarti nel dungeon con questo eroe?\n"
-            << "1) Che l'avventura abbia inizio!\n"
-            << "2) Voglio cambiare\n"
-            << "Scegli con cautela: ";
+        cout << "Selezionare una clase" << '\n'
+        << "1) Guerriero: 16 HP, 14 AC, 4 armi trasportabili, resistente tagliente" << '\n'
+        << "\tarma: " ; Weapon(Weapon::Spada_Lunga).printStats(1);
+        cout << "2) Ranger: 14 HP, 15 AC, 4 armi trasportabili, resistente acido" <<'\n'
+        << "\tarma: " ; Weapon(Weapon::Arco_Lungo).printStats(1);
+        cout << "3) Barbaro: 20 HP, 13 AC, 5 armi trasportabili, resistente contundente e perforante, vulnerabile acido" << '\n'
+        << "\tarma: " ; Weapon(Weapon::Ascia_Bipenne).printStats(1);
+        cout << "4) Mago: 12 HP, 16 AC, 4 armi trasportabili, resistente fuoco e gelo, vulnerabile perforante" << '\n'
+        << "\tarma: " ; Weapon(Weapon::Bacchetta_Raggio_Gelo).printStats(1);
+        cout << "5) Bardo: 14 HP, 15 AC, 5 armi trasportabili, resitente fuoco, vulnerabile gelo" << '\n'
+        << "\tarma: " ; Weapon(Weapon::Liuto).printStats(1);
+        cout << "Scegi il tuo eroe: ";
         if(!get_int(choice))
             Er = true;
 
         system(CLEAR);
+    }while(Er || (choice <= 0 && choice > 5));
+    
+    switch(choice)
+    {
+        case 1:
+            HP = 16;
+            AC = 14;
+            inventario.numArmi = 5;
+            vuln = {};
+            res = {Tagliente};
+            inventario.armi.push_back(Weapon::Spada_Lunga);
+            break;
+        case 2:
+            HP = 14;
+            AC = 15;
+            inventario.numArmi = 5;
+            vuln = {};
+            res = {Acido};
+            inventario.armi.push_back(Weapon::Arco_Lungo);
+            break;
+        case 3:
+            HP = 20;
+            AC = 13;
+            inventario.numArmi = 5;
+            vuln = {Acido};
+            res = {Contundente, Perforante};
+            inventario.armi.push_back(Weapon::Ascia_Bipenne);
+            break;
+        case 4:
+            HP = 12;
+            AC = 16;
+            inventario.numArmi = 4;
+            vuln = {Perforante};
+            res = {Fuoco, Gelo};
+            inventario.armi.push_back(Weapon::Bacchetta_Raggio_Gelo);
+            break;
+        case 5:
+            HP = 14;
+            AC = 15;
+            inventario.numArmi = 4;
+            vuln = {Gelo};
+            res = {Fuoco};
+            inventario.armi.push_back(Weapon::Liuto);
+            break;
+    }
+    
+    do{
+        Er = false;
+        cout << "Selezionare una razza" << '\n'
+        << "1) Un agile elfo delle foreste: -1 HP, +2 AC, -1 numero armi trasportabili, vulnerabile acido, resitente elettrico" << '\n'
+        << "2) Un prode umano: +3 HP" <<'\n'
+        << "3) Un cocciuto nano delle montagne: -1 AC, +1 numero armi trasportabili, vulnerabile fuoco, resistente contundente" << '\n'
+        << "Scegi il tuo eroe: ";
+        if(!get_int(choice))
+            Er = true;
+
+        system(CLEAR);
+    }while(Er || (choice <= 0 && choice > 3));
+
+    switch(choice)
+    {
+        case 1:
+            HP -= 1;
+            AC += 2;
+            inventario.numArmi -= 1;
+            vuln.push_back(Acido);
+            res.push_back(Elettrico);
+            break;
+        case 2:
+            HP += 3;
+            break;
+        case 3:
+            AC -= 1;
+            inventario.numArmi += 1;
+            vuln.push_back(Fuoco);
+            res.push_back(Contundente);
+    }
+    printStats();
+    do
+    {
+        cout << "\nVuoi inoltrarti nel dungeon con questo eroe?\n"
+        << "1) Che l'avventura abbia inizio!\n"
+        << "2) Voglio ricominciare la creazione del personaggio\n"
+        << "Scegli con cautela: ";
+        if(!get_int(choice))
+            Er = true;
+        if(choice == 2)
+        {
+            charCreation();
+            return;
+        }
+        system(CLEAR);
     }while(Er || choice != 1);
     cout << "Come si chiama il tuo eroe?" << endl;
     cin.ignore(9999, '\n');
-    getline(cin, PG.nome);
+    getline(cin, nome);
     system(CLEAR);
-    return PG;
-}
-
-void stats(unsigned int choosen, Hero& PG)
-{
-    cout << "Le statistiche dell'eroe selezionato sono le seguenti:" << endl;
-    switch (choosen)
-    {
-    case 1:
-        PG = Hero::Ranger;
-        break;
-    case 2:
-        PG = Hero::Guerriero;
-        break;
-    case 3:
-        PG = Hero::Barbaro;
-        break;
-    case 4:
-        PG = Hero::Mago;
-        break;
-    case 5:
-        PG = Hero::Bardo;
-        break;
-    case 104:
-        PG = Hero::Cretino;
-        break;
-    }
-    PG.printStats();
-    return;
 }
 
 void Hero::defense(bool& isDefensive)
@@ -125,11 +182,12 @@ int Hero::toHit()
 
 void Hero::printStats()
 {
+    cout << "Le statistiche dell'eroe selezionato sono le seguenti:" << endl;
     cout << "\nHP: " << HP
     << "\nAC: " << AC 
     << "\nLivello: " << livello
     << "\nExp: " << exp
-    << "\nDimensione Inventario: " << inventario.numArmi << endl;
+    << "\nDimensione Inventario: " << inventario.numArmi + 1 << endl;
 
     cout << "Armi: ";
     for(int i = 0; i < inventario.armi.size(); ++i)

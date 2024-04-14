@@ -21,6 +21,7 @@ const Weapon Weapon::Martello_Guerra("Martello da Guerra", Contundente, 1, 1, 8,
 const Weapon Weapon::Lancia_Corta("Lancia Corta", Perforante, 1, 1, 6, true);
 const Weapon Weapon::Mazza_Leggera("Mazza Leggera", Contundente, 1, 1, 6, true);
 const Weapon Weapon::Spadone("Spada a due mani", Tagliente, 1, 2, 6, true, 3);
+const Weapon Weapon::Gran_Martello("Gran Martello", Contundente, 1, 2, 6, true, 3);
 const Weapon Weapon::Bacchetta_Fulmine("Bacchetta di Fulmine", Elettrico, 3, 2, 6, false, 5);
 const Weapon Weapon::Bacchetta_Gelo_Profondo("Bacchetta di Gelo Profondo", Gelo, 2, 1, 10, false, 3);
 const Weapon Weapon::Bacchetta_Freccia_Melf("Bacchetta di Freccia Acida di Melf", Acido, 2, 2, 6, false, 4);
@@ -30,6 +31,6 @@ const Weapon Weapon::Bacchetta_Raggio_Fuoco("Bacchetta di Raggio di Fuoco", Fuoc
 const Hero Hero::Ranger(15, 16, Inventory(4, {Weapon::Arco_Lungo}), {Elettrico}, {Acido});
 const Hero Hero::Guerriero(18, 15, Inventory(5, {Weapon::Spada_Lunga}), {}, {});
 const Hero Hero::Barbaro(20, 14, Inventory(4, {Weapon::Ascia_Bipenne}), {Contundente}, {Fuoco});
-const Hero Hero::Mago(12, 16, Inventory(4, {Weapon::Bacchetta_Raggio_Gelo}), {Fuoco, Gelo}, {Tagliente});
+const Hero Hero::Mago(13, 16, Inventory(4, {Weapon::Bacchetta_Raggio_Gelo}), {Fuoco, Gelo}, {Contundente});
 const Hero Hero::Bardo(15, 15, Inventory(5, {Weapon::Liuto}), {Perforante}, {Tagliente});
 const Hero Hero::Cretino(15, 14, Inventory(5, {Weapon::Bastoncino}), {}, {});

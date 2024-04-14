@@ -92,6 +92,7 @@ public:
     static const Weapon Scimitarra;
     static const Weapon Balestra_Leggera;
     static const Weapon Balestra_Pesante;
+    static const Weapon Gran_Martello;
 
     dmg_type tipo;
     int bonus;
@@ -103,6 +104,7 @@ public:
 
     Weapon(const string& description_, dmg_type tipo_,int bonus_, int num_dice_, int max_dice_, bool isMelee_ = true, int rarity_ = 0)
         : description(description_), tipo(tipo_), bonus(bonus_), num_dice(num_dice_), max_dice(max_dice_), isMelee(isMelee_), rarity(rarity_) {}
+    Weapon(const Weapon& w) {*this = w;}
     int damage();
     void printStats(const int);
 };
@@ -162,10 +164,10 @@ public:
     int currentDmg = 0;
     int AC;
     string nome;
-    int livello;
+    int livello = 1;
     vector<dmg_type> res;
     vector<dmg_type> vuln;
-    int exp;
+    int exp = 0;
     Inventory inventario;
     int currentWeaponIndex;
 
@@ -178,6 +180,7 @@ public:
     void chooseWeapon();
     int chooseAct(const string&);
     void pick_up_weapon(Weapon);
+    void charCreation();
 };
 
 int randRange(int, int);
@@ -187,7 +190,6 @@ Creature Generate(Mostri_GS1 nome_mostro);
 Creature Generate(Mostri_GS2 nome_mostro);
 Creature Generate(Mostri_GS3 nome_mostro);
 Hero chooseHero();
-void stats(unsigned int, Hero&);
 void turn(Hero&, Creature&);
 dmg_type string_to_dmg_type(const string&);
 string dmg_type_to_string(const dmg_type&);

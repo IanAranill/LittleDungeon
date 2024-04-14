@@ -40,7 +40,7 @@ void turn(Hero& PG, Creature& mostro)
     //special feature regeneration
     if(mostro.nome == "Troll" && mostro.currentDmg > 0)
     {
-        mostro.currentDmg -= mostro.GS;
+        mostro.currentDmg -= 2;
         mostro.currentDmg = max(0, mostro.currentDmg);
         if(mostro.isChecked)
             cout << "Noti con orrore che le ferite inflitte al Troll si richiudono a vista d'occhio" << endl;

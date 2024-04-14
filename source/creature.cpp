@@ -25,7 +25,7 @@ Creature Generate(Mostri_GS1 nome_mostro)
             tmp.nome = "Goblin";
             tmp.res = {Contundente};
             vector<Weapon> GoblinWeapons = {Weapon::Lancia_Corta, Weapon::Arco_Corto, Weapon::Mazza_Leggera};
-            tmp.armi.push_back(GoblinWeapons[randRange(0,GoblinWeapons.size()-1)]);
+            tmp.armi.push_back(GoblinWeapons[randRange(0, GoblinWeapons.size()-1)]);
             break;
         }
         case Mostri_GS1::ratto_gigante:
@@ -46,7 +46,7 @@ Creature Generate(Mostri_GS1 nome_mostro)
             tmp.nome = "Bandito";
             tmp.res = {};
             vector<Weapon> BanditWeapons = {Weapon::Lancia, Weapon::Arco_Corto, Weapon::Mazza_Leggera, Weapon::Scimitarra, Weapon::Balestra_Leggera};
-            tmp.armi.push_back(BanditWeapons[randRange(0,BanditWeapons.size()-1)]);
+            tmp.armi.push_back(BanditWeapons[randRange(0, BanditWeapons.size()-1)]);
             break;
         }
     }
@@ -91,7 +91,7 @@ Creature Generate(Mostri_GS2 nome_mostro)
             tmp.nome = "Hobgoblin";
             tmp.res = {Contundente};
             vector<Weapon> HobgoblinWeapons = {Weapon::Lancia, Weapon::Spada_Lunga, Weapon::Mazza_Leggera, Weapon::Alabarda};
-            tmp.armi.push_back(HobgoblinWeapons[randRange(0,HobgoblinWeapons.size()-1)]);
+            tmp.armi.push_back(HobgoblinWeapons[randRange(0, HobgoblinWeapons.size()-1)]);
             break;
         }
         case Mostri_GS2::gnoll:
@@ -101,7 +101,7 @@ Creature Generate(Mostri_GS2 nome_mostro)
             tmp.GS = 2;
             tmp.nome = "Gnoll";
             vector<Weapon> GnollWeapons = {Weapon::Mazzafrusto, Weapon::Martello_Guerra, Weapon::Alabarda};
-            tmp.armi.push_back(GnollWeapons[randRange(0,GnollWeapons.size()-1)]);
+            tmp.armi.push_back(GnollWeapons[randRange(0, GnollWeapons.size()-1)]);
             break;
         }
 
@@ -113,7 +113,7 @@ Creature Generate(Mostri_GS3 nome_mostro)
 {
     int difference = randRange(-1, 1);
     Creature tmp;
-    switch (nome_mostro)
+    switch(nome_mostro)
     {
         case Mostri_GS3::bugbear:
         {
@@ -121,19 +121,22 @@ Creature Generate(Mostri_GS3 nome_mostro)
             tmp.HP = randRange(12, 22);
             tmp.GS = 3;
             tmp.nome = "Bugbear";
-            vector<Weapon> BugbearWeapons = {Weapon::Mazzafrusto, Weapon::Mazzafrusto, Weapon::Ascia_Bipenne, Weapon::Spadone};
-            tmp.armi.push_back(BugbearWeapons[randRange(0,BugbearWeapons.size()-1)]);
+            vector<Weapon> BugbearWeapons = {Weapon::Mazzafrusto, Weapon::Alabarda, Weapon::Ascia_Bipenne, Weapon::Spadone};
+            tmp.armi.push_back(BugbearWeapons[randRange(0, BugbearWeapons.size()-1)]);
             break;
         }
         case Mostri_GS3::orco:
+        {
             tmp.AC = 13 + difference;
             tmp.HP = randRange(16, 22);
             tmp.GS = 3;
             tmp.nome = "Orco";
             tmp.res = {Tagliente, Contundente, Perforante};
             tmp.vuln = {Fuoco, Acido, Elettrico, Gelo};
-            tmp.armi = {Weapon::Ascia_Bipenne};
+            vector<Weapon> OrcWeapons = {Weapon::Ascia_Bipenne, Weapon::Gran_Martello};
+            tmp.armi.push_back(OrcWeapons[randRange(0, OrcWeapons.size()-1)]);
             break;
+        }
         case Mostri_GS3::goblin_stregone:
             tmp.AC = 17 + difference;
             tmp.HP = randRange(5, 10);
@@ -186,13 +189,13 @@ Creature Generate(Mostri_Boss nome_mostro)
             break;
         case Mostri_Boss::orco_capoguerra:
         {
-            tmp.AC = 20 + difference;
+            tmp.AC = 19 + difference;
             tmp.HP = randRange(30, 40);
             tmp.GS = 4;
             tmp.nome = "Orco Capoguerra";
             tmp.res = {Perforante, Contundente, Tagliente};
             tmp.vuln = {};
-            tmp.armi = {Weapon("Spadone di Gruumsh", Tagliente, +4, 3, 8)};
+            tmp.armi = {Weapon("Spadone di Gruumsh", Tagliente, +4, 3, 6)};
             break;
         }
     }
@@ -227,7 +230,7 @@ void Creature::observed()
     else
         cout << HP << "hp" << endl;
     cout << "Tra " << AC - difference << " e " << AC + difference << "AC" << endl
-    
+
     << "È resistente a: ";
     for(int i = 0; i < res.size(); ++i)
         cout << dmg_type_to_string(res[i]) << (i < res.size()-1 ? ", " : "");
