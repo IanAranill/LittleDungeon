@@ -241,7 +241,7 @@ void Creature::observed()
 
     cout << endl << "Può attaccare con: ";
     for(int i = 0; i < armi.size(); ++i)
-        cout << armi[i].description << (i < res.size()-1 ? ", " : "");
+        cout << armi[i].description << (i < armi.size()-1 ? ", " : "");
 
     cout << endl;
     isChecked = true;
