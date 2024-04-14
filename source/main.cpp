@@ -78,7 +78,7 @@ int main()
             float percGSmin = 1 - (ceil(maxGsPiano) - maxGsPiano) * (i+1) / nStanze;
             if(percGSmin == 1)
                 percGSmin = 0;
-            int gs = max(1, (int)ceil(maxGsPiano) - (randRange(0, 100)/100.0 <= percGSmin));
+            float gs = max(1, (int)ceil(maxGsPiano) - (randRange(0, 100)/100.0 <= percGSmin));
 
             //controllo Boss
             if(isBoss)
