@@ -45,7 +45,7 @@ Creature Generate(Mostri_GS1 nome_mostro)
             tmp.GS = 1;
             tmp.nome = "Bandito";
             tmp.res = {};
-            vector<Weapon> BanditWeapons = {Weapon::Lancia, Weapon::Arco_Corto, Weapon::Mazza_Leggera, Weapon::Scimitarra, Weapon::Balestra_Leggera};
+            vector<Weapon> BanditWeapons = {Weapon::Lancia, Weapon::Arco_Corto, Weapon::Mazza_Leggera, Weapon::Pugnale};
             tmp.armi.push_back(BanditWeapons[randRange(0, BanditWeapons.size()-1)]);
             break;
         }
@@ -176,7 +176,7 @@ Creature Generate(Mostri_Boss nome_mostro)
             break;
         case Mostri_Boss::troll:
             tmp.AC = 16 + difference;
-            tmp.HP = randRange(20, 35);
+            tmp.HP = randRange(25, 35);
             tmp.GS = 4;
             tmp.nome = "Troll";
             tmp.res = {Perforante, Contundente};
@@ -237,7 +237,7 @@ void Creature::observed()
 
     cout << endl << "È vulnerabile a: ";
     for(int i = 0; i < vuln.size(); ++i)
-        cout << dmg_type_to_string(vuln[i]) << (i < res.size()-1 ? ", " : "");
+        cout << dmg_type_to_string(vuln[i]) << (i < vuln.size()-1 ? ", " : "");
 
     cout << endl << "Può attaccare con: ";
     for(int i = 0; i < armi.size(); ++i)

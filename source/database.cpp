@@ -11,6 +11,7 @@ const Weapon Weapon::Bastoncino("Spada del Destino AKA spada di legno", Contunde
 const Weapon Weapon::Bacchetta_Raggio_Gelo("Bacchetta di Raggio di Gelo", Gelo, 2, 1, 6, false, 1);
 /*New weapons*/
 const Weapon Weapon::Lancia("Lancia", Perforante, 0, 1, 8, true);
+const Weapon Weapon::Pugnale("Pugnale", Perforante, 1, 1, 4, true, -1);
 const Weapon Weapon::Scimitarra("Scimitarra", Tagliente, 2, 1, 6, true, 1);
 const Weapon Weapon::Mazzafrusto("Mazzafrusto", Contundente, 0, 1, 10, true, 1);
 const Weapon Weapon::Alabarda("Alabarda", Tagliente, 0, 1, 10, true, 1);

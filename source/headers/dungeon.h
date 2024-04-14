@@ -93,6 +93,7 @@ public:
     static const Weapon Balestra_Leggera;
     static const Weapon Balestra_Pesante;
     static const Weapon Gran_Martello;
+    static const Weapon Pugnale;
 
     dmg_type tipo;
     int bonus;

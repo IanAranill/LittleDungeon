@@ -30,7 +30,7 @@ void Hero::charCreation()
         case 1:
             HP = 16;
             AC = 14;
-            inventario.numArmi = 5;
+            inventario.numArmi = 4;
             vuln = {};
             res = {Tagliente};
             inventario.armi.push_back(Weapon::Spada_Lunga);
@@ -38,7 +38,7 @@ void Hero::charCreation()
         case 2:
             HP = 14;
             AC = 15;
-            inventario.numArmi = 5;
+            inventario.numArmi = 4;
             vuln = {};
             res = {Acido};
             inventario.armi.push_back(Weapon::Arco_Lungo);
@@ -62,7 +62,7 @@ void Hero::charCreation()
         case 5:
             HP = 14;
             AC = 15;
-            inventario.numArmi = 4;
+            inventario.numArmi = 5;
             vuln = {Gelo};
             res = {Fuoco};
             inventario.armi.push_back(Weapon::Liuto);
@@ -126,7 +126,7 @@ void Hero::defense(bool& isDefensive)
 {
     unsigned int cura = randRange(2, 4) * livello;
     AC += max(1, livello * 2/3);
-    cout << "\nTieni la guardia alta (+" << livello*2/3 << " AC) e guarisci le tue ferite di " << cura << endl;
+    cout << "\nTieni la guardia alta (+" << max(1, livello*2/3) << " AC) e guarisci le tue ferite di " << cura << endl;
     currentDmg -= cura;
     currentDmg = max(0, currentDmg);
     isDefensive = true;
