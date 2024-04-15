@@ -154,6 +154,52 @@ Creature Generate(Mostri_GS3 nome_mostro)
     return tmp;
 }
 
+Creature Generate(Mostri_GS4 nome_mostro)
+{
+    int difference = randRange(-1, 1);
+    Creature tmp;
+    switch(nome_mostro)
+    {
+        case Mostri_GS4::ogre:
+            tmp.AC = 15 + difference;
+            tmp.HP = randRange(15, 30);
+            tmp.GS = 4;
+            tmp.nome = "Ogre";
+            tmp.res = {Contundente, Perforante};
+            tmp.vuln = {Fuoco};
+            tmp.armi = {Weapon("Tronco d'albero", Contundente, +2, 2, 10)};
+            break;
+        case Mostri_GS4::lupo_mannaro:
+            tmp.AC = 17 + difference;
+            tmp.HP = randRange(12, 17);
+            tmp.GS = 4;
+            tmp.nome = "Lupo Mannaro";
+            tmp.vuln = {Fuoco, Acido};
+            tmp.res = {Gelo, Tagliente, Contundente, Perforante};
+            tmp.armi = {
+                Weapon("Artiglio", Tagliente, +2, 1, 8),
+                Weapon("Artiglio", Tagliente, +2, 1, 8),
+                Weapon("Morso", Perforante, +2, 1, 8)
+                };
+            break;
+        case Mostri_GS4::bandito_capo:
+            tmp.AC = 16 + difference;
+            tmp.HP = randRange(18, 22);
+            tmp.GS = 4;
+            tmp.nome = "Capo dei Banditi";
+            tmp.vuln = {};
+            tmp.res = {Gelo, Fuoco};
+            tmp.armi = {
+                Weapon("Spada incantata", Tagliente, +3, 1, 10),
+                Weapon::Balestra_Pesante,
+                Weapon::Bacchetta_Gelo_Profondo
+                };
+            tmp.multiAttack = false;
+            break;
+    }
+    return tmp;
+}
+
 Creature Generate(Mostri_Boss nome_mostro)
 {
     int difference = randRange(-1, 1);
@@ -214,6 +260,8 @@ Creature RandMostro(int GS)
             return Generate(static_cast<Mostri_GS2>(randRange(0, (int)Mostri_GS2::dimensione-1)));
         case 3:
             return Generate(static_cast<Mostri_GS3>(randRange(0, (int)Mostri_GS3::dimensione-1)));
+        case 4:
+            return Generate(static_cast<Mostri_GS4>(randRange(0, (int)Mostri_GS4::dimensione-1)));
         default:
             throw(string) "Error104 Mostro mal generato";
     }

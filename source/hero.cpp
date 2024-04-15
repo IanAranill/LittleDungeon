@@ -10,9 +10,9 @@ void Hero::charCreation()
         cout << "Selezionare una clase" << '\n'
         << "1) Guerriero: 16 HP, 14 AC, 4 armi trasportabili, resistente tagliente" << '\n'
         << "\tarma: " ; Weapon(Weapon::Spada_Lunga).printStats(1);
-        cout << "2) Ranger: 14 HP, 15 AC, 4 armi trasportabili, resistente acido" <<'\n'
+        cout << "2) Ranger: 15 HP, 15 AC, 4 armi trasportabili, resistente acido" <<'\n'
         << "\tarma: " ; Weapon(Weapon::Arco_Lungo).printStats(1);
-        cout << "3) Barbaro: 20 HP, 13 AC, 5 armi trasportabili, resistente contundente e perforante, vulnerabile acido" << '\n'
+        cout << "3) Barbaro: 18 HP, 13 AC, 5 armi trasportabili, resistente contundente e perforante, vulnerabile acido" << '\n'
         << "\tarma: " ; Weapon(Weapon::Ascia_Bipenne).printStats(1);
         cout << "4) Mago: 12 HP, 16 AC, 4 armi trasportabili, resistente fuoco e gelo, vulnerabile perforante" << '\n'
         << "\tarma: " ; Weapon(Weapon::Bacchetta_Raggio_Gelo).printStats(1);
@@ -25,6 +25,67 @@ void Hero::charCreation()
         system(CLEAR);
     }while(Er || (choice <= 0 && choice > 5));
     
+    dataClass(choice);
+    do{
+        Er = false;
+        cout << "Selezionare una razza" << '\n'
+        << "1) Un agile elfo delle foreste: -1 HP, +2 AC, -1 numero armi trasportabili, vulnerabile acido, resitente elettrico" << '\n'
+        << "2) Un prode umano: +3 HP" <<'\n'
+        << "3) Un cocciuto nano delle montagne: -1 AC, +1 numero armi trasportabili, vulnerabile fuoco, resistente contundente" << '\n'
+        << "Scegi il tuo eroe: ";
+        if(!get_int(choice))
+            Er = true;
+
+        system(CLEAR);
+    }while(Er || choice <= 0 || choice > 3);
+
+    dataRace(choice);
+    printStats();
+    do
+    {
+        cout << "\nVuoi inoltrarti nel dungeon con questo eroe?\n"
+        << "1) Che l'avventura abbia inizio!\n"
+        << "2) Voglio ricominciare la creazione del personaggio\n"
+        << "Scegli con cautela: ";
+        if(!get_int(choice))
+            Er = true;
+        if(choice == 2)
+        {
+            charCreation();
+            return;
+        }
+        system(CLEAR);
+    }while(Er || choice != 1);
+    cout << "Come si chiama il tuo eroe?" << endl;
+    cin.ignore(9999, '\n');
+    getline(cin, nome);
+    system(CLEAR);
+}
+
+void Hero::dataRace(int choice)
+{
+    switch(choice)
+    {
+        case 1:
+            HP -= 1;
+            AC += 2;
+            inventario.numArmi -= 1;
+            vuln.push_back(Acido);
+            res.push_back(Elettrico);
+            break;
+        case 2:
+            HP += 3;
+            break;
+        case 3:
+            AC -= 1;
+            inventario.numArmi += 1;
+            vuln.push_back(Fuoco);
+            res.push_back(Contundente);
+    }
+}
+
+void Hero::dataClass(int choice)
+{
     switch(choice)
     {
         case 1:
@@ -36,7 +97,7 @@ void Hero::charCreation()
             inventario.armi.push_back(Weapon::Spada_Lunga);
             break;
         case 2:
-            HP = 14;
+            HP = 15;
             AC = 15;
             inventario.numArmi = 4;
             vuln = {};
@@ -44,7 +105,7 @@ void Hero::charCreation()
             inventario.armi.push_back(Weapon::Arco_Lungo);
             break;
         case 3:
-            HP = 20;
+            HP = 18;
             AC = 13;
             inventario.numArmi = 5;
             vuln = {Acido};
@@ -68,58 +129,6 @@ void Hero::charCreation()
             inventario.armi.push_back(Weapon::Liuto);
             break;
     }
-    
-    do{
-        Er = false;
-        cout << "Selezionare una razza" << '\n'
-        << "1) Un agile elfo delle foreste: -1 HP, +2 AC, -1 numero armi trasportabili, vulnerabile acido, resitente elettrico" << '\n'
-        << "2) Un prode umano: +3 HP" <<'\n'
-        << "3) Un cocciuto nano delle montagne: -1 AC, +1 numero armi trasportabili, vulnerabile fuoco, resistente contundente" << '\n'
-        << "Scegi il tuo eroe: ";
-        if(!get_int(choice))
-            Er = true;
-
-        system(CLEAR);
-    }while(Er || (choice <= 0 && choice > 3));
-
-    switch(choice)
-    {
-        case 1:
-            HP -= 1;
-            AC += 2;
-            inventario.numArmi -= 1;
-            vuln.push_back(Acido);
-            res.push_back(Elettrico);
-            break;
-        case 2:
-            HP += 3;
-            break;
-        case 3:
-            AC -= 1;
-            inventario.numArmi += 1;
-            vuln.push_back(Fuoco);
-            res.push_back(Contundente);
-    }
-    printStats();
-    do
-    {
-        cout << "\nVuoi inoltrarti nel dungeon con questo eroe?\n"
-        << "1) Che l'avventura abbia inizio!\n"
-        << "2) Voglio ricominciare la creazione del personaggio\n"
-        << "Scegli con cautela: ";
-        if(!get_int(choice))
-            Er = true;
-        if(choice == 2)
-        {
-            charCreation();
-            return;
-        }
-        system(CLEAR);
-    }while(Er || choice != 1);
-    cout << "Come si chiama il tuo eroe?" << endl;
-    cin.ignore(9999, '\n');
-    getline(cin, nome);
-    system(CLEAR);
 }
 
 void Hero::defense(bool& isDefensive)

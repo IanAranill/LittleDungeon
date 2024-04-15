@@ -58,6 +58,14 @@ enum class Mostri_GS3
     dimensione
 };
 
+enum class Mostri_GS4
+{
+    ogre,
+    lupo_mannaro,
+    bandito_capo,
+    dimensione
+};
+
 enum class Mostri_Boss
 {
     drago,
@@ -154,12 +162,6 @@ class Hero
 {
 private:
 public:
-    static const Hero Ranger;
-    static const Hero Guerriero;
-    static const Hero Barbaro;
-    static const Hero Bardo;
-    static const Hero Mago;
-    static const Hero Cretino;
 
     int HP;
     int currentDmg = 0;
@@ -182,6 +184,8 @@ public:
     int chooseAct(const string&);
     void pick_up_weapon(Weapon);
     void charCreation();
+    void dataClass(int);
+    void dataRace(int);
 };
 
 int randRange(int, int);
@@ -194,3 +198,4 @@ Hero chooseHero();
 void turn(Hero&, Creature&);
 dmg_type string_to_dmg_type(const string&);
 string dmg_type_to_string(const dmg_type&);
+int diffSelection(int&, int&, int&, int&, int&);

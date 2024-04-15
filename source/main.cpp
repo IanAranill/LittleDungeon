@@ -4,10 +4,11 @@
 
 int main()
 {
-    const int maxPiani = 6;
-    const int minPiani = 4;
-    const int maxStanze = 4;
-    const int minStanze = 2;
+    int maxPiani = 7;
+    int minPiani = 5;
+    int maxStanze = 4;
+    int minStanze = 2;
+    int maxGS = 4;
 
     system(CHCP);
     system(CLEAR);
@@ -23,7 +24,6 @@ int main()
 
     srand(time(NULL));
     char ingr;
-    int nPiani = randRange(minPiani, maxPiani);
     cout << "Benvenuto avventuriero, sei pronto ad affrontare il piccolo Dungeon? \n (y/n): ";
     cin >> ingr;
     if (ingr != 'y')
@@ -33,6 +33,10 @@ int main()
     }
     Hero PG;
     PG.charCreation();
+
+    int diff = diffSelection(minPiani, maxPiani, minStanze, maxStanze, maxGS);
+    int nPiani = randRange(minPiani, maxPiani);
+
     cout << "Scendendo nel dungeon ..." << endl;
     
     bool stanzeMin = false;
@@ -44,7 +48,10 @@ int main()
         //calcolo stanze
         if(piano == nPiani)
         {
-            nStanze = 1;
+            if(diff == 2)
+                nStanze = randRange(2, 3);
+            else
+                nStanze = 1;
             isBoss = true;
         }
         else
@@ -68,21 +75,29 @@ int main()
 
         cout << "\n\n" << PG.nome << ", sei sceso al piano -" << piano << endl;
         cout << "In questo piano del dungeon ci sono " << nStanze << " stanze" << endl;
-        for(int i = 0; i < nStanze; ++i){
+        for(int stanza = 0; stanza < nStanze; ++stanza){
             srand(time(NULL));
             Creature mostro;
 
             //calcolo gs
-            int maxGS = 3;
+            
             float maxGsPiano = piano/(nPiani-1.0) * maxGS;
-            float percGSmin = 1 - (ceil(maxGsPiano) - maxGsPiano) * (i+1) / nStanze;
+            float percGSmin = 1 - (ceil(maxGsPiano) - maxGsPiano) * (stanza+1) / nStanze;
             if(percGSmin == 1)
                 percGSmin = 0;
             float gs = max(1, (int)ceil(maxGsPiano) - (randRange(0, 100)/100.0 <= percGSmin));
 
             //controllo Boss
             if(isBoss)
-                mostro = RandMostro(0);
+            {
+                if(diff == 0)
+                {
+                    cout << "Complimenti, sei arrivato all'uscita del Piccolo Dungeon" << endl;
+                    return 0;
+                }
+                else
+                    mostro = RandMostro(0);
+            }
             else
                 mostro = RandMostro(gs);
                 //TODO implementare mostri multipli, rendere colpibili con armi melee solo il primo e con le ranged tutti a scelta
@@ -91,7 +106,7 @@ int main()
             if(isBoss)
                 cout << "\nSei arrivato alla tana del \e[31mSignore del Piccolo Dungeon\e[0m, ora devi dimostrare chi sei veramente, affrontalo e scopri se hai veramente la stoffa dell'\e[32mEroe\e[0m" << endl;
             else
-                cout << "\nEntri nella "<< i+1 << "-esima stanza del piano dove " 
+                cout << "\nEntri nella "<< stanza+1 << "-esima stanza del piano " << piano << " dove " 
                     << (isTreasure ? "ci sono un " + mostro.nome + " e una cassa con dentro del tesoro" : "c'è un " + mostro.nome) << endl;
         //combattimento
 
@@ -106,7 +121,7 @@ int main()
                 system(PAUSE);
                 return 0;
             }
-            if(piano == nPiani)
+            if(piano == nPiani && stanza == nStanze)
             {
                 cout << "\e[32mComplimenti Eroe Hai Vinto!\e[0m" << endl << "Oggi la luce ha trionfato e il signore del Piccolo Dungeon è caduto davanti alla tua forza" << endl;
                 system(PAUSE);

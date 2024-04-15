@@ -27,11 +27,3 @@ const Weapon Weapon::Bacchetta_Fulmine("Bacchetta di Fulmine", Elettrico, 3, 2, 
 const Weapon Weapon::Bacchetta_Gelo_Profondo("Bacchetta di Gelo Profondo", Gelo, 2, 1, 10, false, 3);
 const Weapon Weapon::Bacchetta_Freccia_Melf("Bacchetta di Freccia Acida di Melf", Acido, 2, 2, 6, false, 4);
 const Weapon Weapon::Bacchetta_Raggio_Fuoco("Bacchetta di Raggio di Fuoco", Fuoco, 2, 1, 10, false, 3);
-
-/*HEROES*/
-const Hero Hero::Ranger(15, 16, Inventory(4, {Weapon::Arco_Lungo}), {Elettrico}, {Acido});
-const Hero Hero::Guerriero(18, 15, Inventory(5, {Weapon::Spada_Lunga}), {}, {});
-const Hero Hero::Barbaro(20, 14, Inventory(4, {Weapon::Ascia_Bipenne}), {Contundente}, {Fuoco});
-const Hero Hero::Mago(13, 16, Inventory(4, {Weapon::Bacchetta_Raggio_Gelo}), {Fuoco, Gelo}, {Contundente});
-const Hero Hero::Bardo(15, 15, Inventory(5, {Weapon::Liuto}), {Perforante}, {Tagliente});
-const Hero Hero::Cretino(15, 14, Inventory(5, {Weapon::Bastoncino}), {}, {});

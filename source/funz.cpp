@@ -5,13 +5,63 @@ int randRange(int min, int max)
     return rand()%(max - min + 1)+min;
 }
 
+int diffSelection(int& minPiani, int& maxPiani, int& minStanze, int& maxStanze, int& maxGS)
+{
+    int choice;
+    bool er;
+    do{
+        er = false;
+        cout << "Selezionare la difficoltà desiderata:\n"
+            << "1) Bimbo (nemici semplici, Dungeon grande, niente Boss)\n"
+            << "2) Scudiero (nemici semplici, Dungeon standard)\n"
+            << "3) Avventuriero (tutti i nemici, Dungeon stanard)\n"
+            << "4) Veterano (tutti i nemici, Dungeon grande, Boss multipli)\n"
+            << "5) Eroe (tutti i nemici, Dungeon piccolo)\n"
+            << "6) Eroe Grandioso (tutti i nemici, Dungeon piccolo, Boss multipli)\n";
+        if(!get_int(choice))
+            er = true;
+    }while(er || choice < 1 || choice > 6);
+    
+    //return 0 se non c'è il boss, 1 se c'è 1 boss, 2 se ci sono randRange(2,3) boss
+    minPiani = 5;
+    maxPiani = 7;
+    minStanze = 2;
+    maxStanze = 4;
+    maxGS = 4;
+    switch(choice)
+    {
+        case 1:
+            minStanze ++;
+            maxStanze ++;
+            maxGS --;
+            return 0;
+        case 2:
+            maxGS --;
+            return 1;
+        case 3:
+            return 1;
+        case 4:
+            return 2;
+        case 5:
+            minPiani --;
+            maxPiani -= 2;
+            maxStanze --;
+            return 1;
+        case 6:
+            minPiani --;
+            maxPiani -= 2;
+            maxStanze --;
+            return 2;
+    }
+}
+
 void turn(Hero& PG, Creature& mostro)
 {
     bool isDefensive = false;
     
     switch(PG.chooseAct(mostro.nome))
     {
-    case 1://attacco
+    case 1://attacco0
         //scelta arma
         PG.chooseWeapon();
         //colpire
