@@ -15,6 +15,8 @@
 #define PAUSE "read -r -p \"Press enter to continue...\" key"
 #endif
 
+#define INT_MAX 2147483647
+
 using namespace std;
 
 class Weapon;

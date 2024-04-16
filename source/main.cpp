@@ -75,7 +75,7 @@ int main()
 
         cout << "\n\n" << PG.nome << ", sei sceso al piano -" << piano << endl;
         cout << "In questo piano del dungeon ci sono " << nStanze << " stanze" << endl;
-        for(int stanza = 0; stanza < nStanze; ++stanza){
+        for(int stanza = 1; stanza <= nStanze; ++stanza){
             srand(time(NULL));
             Creature mostro;
 
@@ -95,18 +95,16 @@ int main()
                     cout << "Complimenti, sei arrivato all'uscita del Piccolo Dungeon" << endl;
                     return 0;
                 }
-                else
-                    mostro = RandMostro(0);
+                gs = 0;
             }
-            else
-                mostro = RandMostro(gs);
-                //TODO implementare mostri multipli, rendere colpibili con armi melee solo il primo e con le ranged tutti a scelta
-            float probTreasure = gs / maxGS * 2;
+            mostro = RandMostro(gs);
+            //TODO implementare mostri multipli, rendere colpibili con armi melee solo il primo e con le ranged tutti a scelta
+            float probTreasure = gs / maxGS;
             bool isTreasure = randRange(0, 100)/100.0 <= probTreasure && piano != nPiani;
             if(isBoss)
                 cout << "\nSei arrivato alla tana del \e[31mSignore del Piccolo Dungeon\e[0m, ora devi dimostrare chi sei veramente, affrontalo e scopri se hai veramente la stoffa dell'\e[32mEroe\e[0m" << endl;
             else
-                cout << "\nEntri nella "<< stanza+1 << "-esima stanza del piano " << piano << " dove " 
+                cout << "\nEntri nella "<< stanza << "-esima stanza del piano " << piano << " dove " 
                     << (isTreasure ? "ci sono un " + mostro.nome + " e una cassa con dentro del tesoro" : "c'è un " + mostro.nome) << endl;
         //combattimento
 

@@ -59,6 +59,7 @@ void Hero::charCreation()
     cout << "Come si chiama il tuo eroe?" << endl;
     cin.ignore(9999, '\n');
     getline(cin, nome);
+    cin.ignore(0);
     system(CLEAR);
 }
 
@@ -94,7 +95,7 @@ void Hero::dataClass(int choice)
             inventario.numArmi = 4;
             vuln = {};
             res = {Tagliente};
-            inventario.armi.push_back(Weapon::Spada_Lunga);
+            inventario.armi = {Weapon::Spada_Lunga};
             break;
         case 2:
             HP = 15;
@@ -102,7 +103,7 @@ void Hero::dataClass(int choice)
             inventario.numArmi = 4;
             vuln = {};
             res = {Acido};
-            inventario.armi.push_back(Weapon::Arco_Lungo);
+            inventario.armi = {Weapon::Arco_Lungo};
             break;
         case 3:
             HP = 18;
@@ -110,7 +111,7 @@ void Hero::dataClass(int choice)
             inventario.numArmi = 5;
             vuln = {Acido};
             res = {Contundente, Perforante};
-            inventario.armi.push_back(Weapon::Ascia_Bipenne);
+            inventario.armi = {Weapon::Ascia_Bipenne};
             break;
         case 4:
             HP = 12;
@@ -118,7 +119,7 @@ void Hero::dataClass(int choice)
             inventario.numArmi = 4;
             vuln = {Perforante};
             res = {Fuoco, Gelo};
-            inventario.armi.push_back(Weapon::Bacchetta_Raggio_Gelo);
+            inventario.armi = {Weapon::Bacchetta_Raggio_Gelo};
             break;
         case 5:
             HP = 14;
@@ -126,7 +127,7 @@ void Hero::dataClass(int choice)
             inventario.numArmi = 5;
             vuln = {Gelo};
             res = {Fuoco};
-            inventario.armi.push_back(Weapon::Liuto);
+            inventario.armi = {Weapon::Liuto};
             break;
     }
 }
@@ -162,6 +163,7 @@ void Hero::chooseWeapon()
     {
         cout << "\e[31mL'arma selezionata non esiste, ritentare!\e[0m" << endl;
         chooseWeapon();
+        return;
     }
     currentWeaponIndex--;
     return;
@@ -196,7 +198,7 @@ void Hero::printStats()
     << "\nAC: " << AC 
     << "\nLivello: " << livello
     << "\nExp: " << exp
-    << "\nDimensione Inventario: " << inventario.numArmi + 1 << endl;
+    << "\nDimensione Inventario: " << inventario.numArmi << endl;
 
     cout << "Armi: ";
     for(int i = 0; i < inventario.armi.size(); ++i)

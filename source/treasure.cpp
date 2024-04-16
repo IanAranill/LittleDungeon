@@ -12,7 +12,8 @@ Treasure::Treasure()
     Weapon::Alabarda, Weapon::Arco_Lungo, Weapon::Spada_Lunga, Weapon::Ascia_Bipenne,
     Weapon::Bacchetta_Raggio_Gelo, Weapon::Bacchetta_Gelo_Profondo, Weapon::Spadone,
     Weapon::Mazza_Leggera, Weapon::Lancia_Corta, Weapon::Martello_Guerra, Weapon::Bacchetta_Raggio_Fuoco,
-    Weapon::Bacchetta_Freccia_Melf
+    Weapon::Bacchetta_Freccia_Melf, Weapon::Balestra_Leggera, Weapon::Balestra_Pesante, Weapon::Gran_Martello,
+    Weapon::Pugnale, Weapon::Scimitarra
     };
 
     for(Weapon w: data)

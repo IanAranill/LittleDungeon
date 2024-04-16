@@ -41,6 +41,8 @@ int diffSelection(int& minPiani, int& maxPiani, int& minStanze, int& maxStanze, 
         case 3:
             return 1;
         case 4:
+            minStanze ++;
+            maxStanze ++;
             return 2;
         case 5:
             minPiani --;
