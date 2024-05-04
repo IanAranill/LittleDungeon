@@ -100,7 +100,7 @@ Creature Generate(Mostri_GS2 nome_mostro)
             tmp.HP = randRange(10, 18);
             tmp.GS = 2;
             tmp.nome = "Gnoll";
-            vector<Weapon> GnollWeapons = {Weapon::Mazzafrusto, Weapon::Martello_Guerra, Weapon::Alabarda};
+            vector<Weapon> GnollWeapons = {Weapon::Mazzafrusto_Leggero, Weapon::Martello_Guerra, Weapon::Alabarda};
             tmp.armi.push_back(GnollWeapons[randRange(0, GnollWeapons.size()-1)]);
             break;
         }
@@ -121,7 +121,7 @@ Creature Generate(Mostri_GS3 nome_mostro)
             tmp.HP = randRange(12, 22);
             tmp.GS = 3;
             tmp.nome = "Bugbear";
-            vector<Weapon> BugbearWeapons = {Weapon::Mazzafrusto, Weapon::Alabarda, Weapon::Ascia_Bipenne, Weapon::Spadone};
+            vector<Weapon> BugbearWeapons = {Weapon::Mazzafrusto_Pesante, Weapon::Alabarda, Weapon::Ascia_Bipenne, Weapon::Spadone};
             tmp.armi.push_back(BugbearWeapons[randRange(0, BugbearWeapons.size()-1)]);
             break;
         }

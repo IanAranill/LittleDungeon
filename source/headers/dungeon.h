@@ -88,7 +88,8 @@ public:
     static const Weapon Bastoncino;
     static const Weapon Arco_Corto;
     static const Weapon Lancia;
-    static const Weapon Mazzafrusto;
+    static const Weapon Mazzafrusto_Leggero;
+    static const Weapon Mazzafrusto_Pesante;
     static const Weapon Alabarda;
     static const Weapon Bacchetta_Fulmine;
     static const Weapon Bacchetta_Gelo_Profondo;
