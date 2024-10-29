@@ -59,7 +59,7 @@ int main()
             nStanze = randRange(minStanze, maxStanze);
             if(stanzeMin)
             {
-                nStanze = min(nPiani, nStanze+1);
+                nStanze = min(minStanze, nStanze+1);
                 stanzeMin = false;
             }
             if(stanzeMax)
