@@ -105,6 +105,7 @@ public:
     static const Weapon Balestra_Pesante;
     static const Weapon Gran_Martello;
     static const Weapon Pugnale;
+    static const Weapon Morning_Star;
 
     dmg_type tipo;
     int bonus;
@@ -128,6 +129,17 @@ public:
 
     Weapon randWeapon();
     Treasure();
+};
+
+class Textlines {
+public:
+    Textlines();            // Constructor
+    void load_lines();         // Method to load text lines
+    string generate_text(const string& group); // Generate random text
+
+private:
+    vector<string> enterLines;   // Group for entry lines
+    vector<string> victoryLines; // Group for victory lines
 };
 
 class Creature

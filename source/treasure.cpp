@@ -13,7 +13,7 @@ Treasure::Treasure()
     Weapon::Bacchetta_Raggio_Gelo, Weapon::Bacchetta_Gelo_Profondo, Weapon::Spadone,
     Weapon::Mazza_Leggera, Weapon::Lancia_Corta, Weapon::Martello_Guerra, Weapon::Bacchetta_Raggio_Fuoco,
     Weapon::Bacchetta_Freccia_Melf, Weapon::Balestra_Leggera, Weapon::Balestra_Pesante, Weapon::Gran_Martello,
-    Weapon::Pugnale, Weapon::Scimitarra, Weapon::Mazzafrusto_Pesante
+    Weapon::Pugnale, Weapon::Scimitarra, Weapon::Mazzafrusto_Pesante, Weapon::Morning_Star
     };
 
     for(Weapon w: data)
