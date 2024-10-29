@@ -134,7 +134,7 @@ void Hero::dataClass(int choice)
 
 void Hero::defense(bool& isDefensive)
 {
-    unsigned int cura = randRange(2, 4) * livello;
+    unsigned int cura = randRange(1, 3) * livello;
     AC += max(1, livello * 2/3);
     cout << "\nTieni la guardia alta (+" << max(1, livello*2/3) << " AC) e guarisci le tue ferite di " << cura << endl;
     currentDmg -= cura;
