@@ -13,11 +13,12 @@ const Weapon Weapon::Bacchetta_Raggio_Gelo("Bacchetta di Raggio di Gelo", Gelo, 
 const Weapon Weapon::Lancia("Lancia", Perforante, 0, 1, 8, true);
 const Weapon Weapon::Pugnale("Pugnale", Perforante, 1, 1, 4, true, -1);
 const Weapon Weapon::Scimitarra("Scimitarra", Tagliente, 2, 1, 6, true, 1);
-const Weapon Weapon::Mazzafrusto("Mazzafrusto", Contundente, 0, 1, 10, true, 1);
+const Weapon Weapon::Mazzafrusto_Leggero("Mazzafrusto Pesante", Contundente, 0, 1, 8, true, 0);
+const Weapon Weapon::Mazzafrusto_Pesante("Mazzafrusto Pesante", Contundente, 0, 1, 10, true, 1);
 const Weapon Weapon::Alabarda("Alabarda", Tagliente, 0, 1, 10, true, 1);
 const Weapon Weapon::Arco_Corto("Arco Corto", Perforante, 1, 1, 6, false);
 const Weapon Weapon::Balestra_Leggera("Balestra Leggera", Perforante, 2, 1, 8, false, 2);
-const Weapon Weapon::Balestra_Pesante("Balestra Pesante", Perforante, 1, 1, 10, false, 2);
+const Weapon Weapon::Balestra_Pesante("Balestra Pesante", Perforante, 2, 1, 10, false, 3);
 const Weapon Weapon::Martello_Guerra("Martello da Guerra", Contundente, 1, 1, 8, true, 1);
 const Weapon Weapon::Lancia_Corta("Lancia Corta", Perforante, 1, 1, 6, true);
 const Weapon Weapon::Mazza_Leggera("Mazza Leggera", Contundente, 1, 1, 6, true);
