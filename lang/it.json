@@ -1,0 +1,18 @@
+{
+    "enter" : [
+        "Entri nella stanza",
+        "Preparati al combattimento!",
+        "Attento agli angoli bui di questa sala"
+    ],
+    "victory" : [
+        "Hai liberato questa stanza dal suo guardiano",
+        "Emergi vittorioso dallo scontro",
+        "Il tesoro è tuo!",
+        "La vittoria è tua!"
+    ]
+
+
+
+
+
+}

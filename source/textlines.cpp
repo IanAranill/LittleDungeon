@@ -18,25 +18,24 @@ void Textlines::load_lines() {
 
     victoryLines = {
         "Hai liberato questa stanza dal suo guardiano",
-        "Emergi vittorioso dallo scontro!",
+        "Emergi vittorioso dallo scontro",
         "Il tesoro è tuo!",
-        "La vittoria è tua"
+        "La vittoria è tua!"
     };
 }
 
 // Function to generate random text from a specified group
 string Textlines::generate_text(const string& group) {
-    vector<string> selectedGroup;
+    vector<string> *selectedGroup;
 
     // Select the appropriate group based on the input parameter
-    if (group == "enter") {
-        selectedGroup = enterLines;
-    } else if (group == "victory") {
-        selectedGroup = victoryLines;
-    } else {
-        return "Invalid group specified!";
-    }
+    if (group == "enter")
+        selectedGroup = &enterLines;
+    else if (group == "victory")
+        selectedGroup = &victoryLines;
+    else
+        throw "Invalid group specified!";
 
     // Generate a random index and return the corresponding string
-    return selectedGroup[randRange(0, selectedGroup.size()-1)];
+    return (*selectedGroup)[randRange(0, selectedGroup -> size()-1)];
 }
