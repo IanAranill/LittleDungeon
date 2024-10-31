@@ -23,6 +23,9 @@ int main()
     "                                            |___/                  \n"<< endl;
 
     srand(time(NULL));
+
+    Textlines text;
+
     char ingr;
     cout << "Benvenuto avventuriero, sei pronto ad affrontare il piccolo Dungeon? \n (y/n): ";
     cin >> ingr;
@@ -108,7 +111,7 @@ int main()
                     << (isTreasure ? "ci sono un " + mostro.nome + " e una cassa con dentro del tesoro" : "c'è un " + mostro.nome) << endl;
         //combattimento
 
-            cout << '\n' + mostro.nome + " ti attacca" << endl;
+            cout << '\n' << mostro.nome << text.generate_text("enter") << endl;
             do{
                 turn(PG, mostro);
             }while(PG.currentDmg < PG.HP && mostro.currentDmg < mostro.HP);
@@ -125,7 +128,7 @@ int main()
                 system(PAUSE);
                 return 0;
             }
-            cout << "Hai vinto!" << endl << "Hai sconfitto " << mostro.nome << "!" << endl;
+            cout << text.generate_text("victory") << endl << "Hai sconfitto " << mostro.nome << "!" << endl;
         //ricompense
             PG.exp += mostro.GS;
             //tesoro
