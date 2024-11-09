@@ -76,6 +76,16 @@ enum class Mostri_Boss
     dimensione
 };
 
+enum class textCases
+{
+    enterRoom,
+    victoryRoom,
+    defeatRoom,
+    startGame,
+    victoryGame,
+    defeatGame
+};
+
 class Weapon
 {
 private:
@@ -134,12 +144,10 @@ public:
 class Textlines {
 public:
     Textlines();            // Constructor
-    void load_lines();         // Method to load text lines
-    string generate_text(const string& group); // Generate random text
+    string generate_lines(string group);         // Method to load text lines
 
 private:
-    vector<string> enterLines;   // Group for entry lines
-    vector<string> victoryLines; // Group for victory lines
+    vector<string> Lines;   // Group for entry lines
 };
 
 class Creature

@@ -111,7 +111,7 @@ int main()
                     << (isTreasure ? "ci sono un " + mostro.nome + " e una cassa con dentro del tesoro" : "c'è un " + mostro.nome) << endl;
         //combattimento
 
-            cout << '\n' << mostro.nome << text.generate_text("enter") << endl;
+            cout << '\n' << mostro.nome << text.generate_lines("enter") << endl;
             do{
                 turn(PG, mostro);
             }while(PG.currentDmg < PG.HP && mostro.currentDmg < mostro.HP);
@@ -128,7 +128,7 @@ int main()
                 system(PAUSE);
                 return 0;
             }
-            cout << text.generate_text("victory") << endl << "Hai sconfitto " << mostro.nome << "!" << endl;
+            cout << text.generate_lines("victory") << endl << "Hai sconfitto " << mostro.nome << "!" << endl;
         //ricompense
             PG.exp += mostro.GS;
             //tesoro
