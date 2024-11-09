@@ -9,13 +9,7 @@ using json = nlohmann::json; // Crea un alias per comodità
 // Metodo per caricare linee di testo specifiche da un file JSON
 string Textlines::generate_lines(string group) {
     ifstream inputFile("lang/it.json"); // Apri il file JSON
-using json = nlohmann::json; // Crea un alias per comodità
-
-// Metodo per caricare linee di testo specifiche da un file JSON
-string Textlines::generate_lines(string group) {
-    ifstream inputFile("lang/it.json"); // Apri il file JSON
     if (!inputFile.is_open()) {
-        throw runtime_error("Could not open the file!"); // Usa runtime_error per le eccezioni
         throw runtime_error("Could not open the file!"); // Usa runtime_error per le eccezioni
     }
 
