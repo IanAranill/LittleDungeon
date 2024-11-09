@@ -6,12 +6,6 @@
 
 using json = nlohmann::json; // Crea un alias per comodità
 
-// Costruttore
-Textlines::Textlines() {
-    load_lines(textCases::enterRoom); // Carica le linee di testo per il gruppo "enterRoom" all'istanza
-    load_lines(textCases::victoryRoom); // Carica le linee di testo per il gruppo "victoryRoom" all'istanza
-}
-
 // Metodo per caricare linee di testo specifiche da un file JSON
 string Textlines::generate_lines(string group) {
     ifstream inputFile("lang/it.json"); // Apri il file JSON

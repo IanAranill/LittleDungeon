@@ -143,7 +143,6 @@ public:
 
 class Textlines {
 public:
-    Textlines();            // Constructor
     string generate_lines(string group);         // Method to load text lines
 
 private:
