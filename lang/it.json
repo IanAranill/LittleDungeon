@@ -1,10 +1,10 @@
 {
-    "enter" : [
+    "enterRoom" : [
         "Entri nella stanza",
         "Preparati al combattimento!",
         "Attento agli angoli bui di questa sala"
     ],
-    "victory" : [
+    "victoryRoom" : [
         "Hai liberato questa stanza dal suo guardiano",
         "Emergi vittorioso dallo scontro",
         "Il tesoro è tuo!",
