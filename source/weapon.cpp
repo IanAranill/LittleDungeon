@@ -10,7 +10,8 @@ int Weapon::damage()
 
 void Weapon::printStats(const int livello)
 {
-    cout << description << " -> " << "tipo: " << dmg_type_to_string(tipo) << ", danno: " 
+    cout << description << " -> " << "tipo: " << dmg_type_to_string(type) << ", danno: " 
         << num_dice << "d" << max_dice << ", colpire: +" << bonus + livello << endl;
     return;
 }
+

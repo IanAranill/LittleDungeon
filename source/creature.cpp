@@ -24,7 +24,7 @@ Creature Generate(Mostri_GS1 nome_mostro)
             tmp.GS = 1;
             tmp.nome = "Goblin";
             tmp.res = {Contundente};
-            vector<Weapon> GoblinWeapons = {Weapon::Lancia_Corta, Weapon::Arco_Corto, Weapon::Mazza_Leggera};
+            vector<Weapon> GoblinWeapons = {db.getWeapon("Lancia_Corta"), db.getWeapon("Arco_Corto"), db.getWeapon("Mazza_Leggera")};
             tmp.armi.push_back(GoblinWeapons[randRange(0, GoblinWeapons.size()-1)]);
             break;
         }
@@ -47,6 +47,17 @@ Creature Generate(Mostri_GS1 nome_mostro)
             tmp.res = {};
             vector<Weapon> BanditWeapons = {Weapon::Lancia, Weapon::Arco_Corto, Weapon::Mazza_Leggera, Weapon::Pugnale};
             tmp.armi.push_back(BanditWeapons[randRange(0, BanditWeapons.size()-1)]);
+            break;
+        }
+        case Mostri_GS1::coboldo:
+        {
+            tmp.AC = 13 + difference;
+            tmp.HP = randRange(5, 9);
+            tmp.GS = 1;
+            tmp.nome = "Coboldo";
+            tmp.res = {Tagliente};
+            vector<Weapon> CoboldWeapons = {Weapon::Pugnale, Weapon::Balestra_Leggera, Weapon::Mazza_Leggera};
+            tmp.armi.push_back(CoboldWeapons[randRange(0, CoboldWeapons.size() - 1)]);
             break;
         }
     }
@@ -92,6 +103,19 @@ Creature Generate(Mostri_GS2 nome_mostro)
             tmp.res = {Contundente};
             vector<Weapon> HobgoblinWeapons = {Weapon::Lancia, Weapon::Spada_Lunga, Weapon::Mazza_Leggera, Weapon::Alabarda};
             tmp.armi.push_back(HobgoblinWeapons[randRange(0, HobgoblinWeapons.size()-1)]);
+            break;
+        }
+        case Mostri_GS2::sciame_di_ragni:
+        {
+            tmp.AC = 15 + difference;
+            tmp.HP = randRange(14, 20);
+            tmp.GS = 2;
+            tmp.nome = "Sciame di Ragni";
+            tmp.res = {Contundente, Tagliente, Perforante};
+            tmp.armi = {
+                Weapon("Morsi dello Sciame", Perforante, 4, 1, 4),
+                Weapon("Veleno", Acido, 2, 1, 3)
+            };
             break;
         }
         case Mostri_GS2::gnoll:
@@ -149,6 +173,14 @@ Creature Generate(Mostri_GS3 nome_mostro)
                 Weapon("Fulmine", Elettrico, +3, 2, 6),
                 Weapon("Eruzione di Acido", Acido, +2, 3, 4)
             };
+            break;
+        case Mostri_GS3::armatura_animata:
+            tmp.AC = 16 + difference;
+            tmp.HP = randRange(20, 25);
+            tmp.GS = 3;
+            tmp.nome = "Armatura Animata";
+            tmp.multiAttack = false;
+            tmp.armi = {Weapon("Schianto", Contundente, +4, 2, 6)};
             break;
     }
     return tmp;
@@ -210,11 +242,11 @@ Creature Generate(Mostri_Boss nome_mostro)
             tmp.AC = 20 + difference;
             tmp.HP = randRange(30, 45);
             tmp.GS = 4;
-            tmp.nome = "Drago";
+            tmp.nome = "Giovane Drago Rosso";
             tmp.res = {Tagliente, Contundente, Fuoco};
             tmp.vuln = {Gelo};
             tmp.armi = {
-                Weapon("Fauci del Drago", Perforante, +4, 2, 6),
+                Weapon("Morso del Drago", Perforante, +4, 2, 6),
                 Weapon("Artiglio", Tagliente, +3, 1, 6),
                 Weapon("Artiglio", Tagliente, +3, 1, 6),
                 Weapon("Colpo di Coda", Contundente, +1, 1, 10)
@@ -337,13 +369,13 @@ void Creature::turn(Hero& PG)
         {
             isHit = true;
             for(dmg_type type : PG.res)
-                if(attackingWith[i].tipo == type)
+                if(attackingWith[i].type == type)
                 {
                     resistant = true;
                     dmg = max(1, dmg/2);
                 }
             for(dmg_type type : PG.vuln)
-                if(attackingWith[i].tipo == type)
+                if(attackingWith[i].type == type)
                 {
                     vulnerable = true;
                     dmg *= 2;

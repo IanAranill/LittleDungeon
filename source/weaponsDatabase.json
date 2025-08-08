@@ -1,0 +1,155 @@
+{
+    "Arco_Lungo": {
+        "description": "Arco Lungo",
+        "type": "Perforante",
+        "bonus": 1,
+        "num_dice": 1,
+        "max_dice": 8,
+        "isMelee": false,
+        "rarity": 1
+    },
+    "Spada_Lunga": {
+        "description": "Spada Lunga",
+        "type": "Tagliente",
+        "bonus": 1,
+        "num_dice": 1,
+        "max_dice": 8,
+        "isMelee": true,
+        "rarity": 1
+    },
+    "Ascia_Bipenne": {
+        "description": "Ascia Bipenne",
+        "type": "Tagliente",
+        "bonus": 0,
+        "num_dice": 1,
+        "max_dice": 12,
+        "isMelee": true,
+        "rarity": 2
+    },
+    "Bacchetta_Raggio_Gelo": {
+        "description": "Bacchetta di Raggio di Gelo",
+        "type": "Gelo",
+        "bonus": 2,
+        "num_dice": 1,
+        "max_dice": 6,
+        "isMelee": false,
+        "rarity": 1
+    },
+    "Scimitarra": {
+        "description": "Scimitarra",
+        "type": "Tagliente",
+        "bonus": 2,
+        "num_dice": 1,
+        "max_dice": 6,
+        "isMelee": true,
+        "rarity": 1
+    },
+    "Mazzafrusto_Pesante": {
+        "description": "Mazzafrusto Pesante",
+        "type": "Contundente",
+        "bonus": 0,
+        "num_dice": 1,
+        "max_dice": 10,
+        "isMelee": true,
+        "rarity": 1
+    },
+    "Alabarda": {
+        "description": "Alabarda",
+        "type": "Tagliente",
+        "bonus": 0,
+        "num_dice": 1,
+        "max_dice": 10,
+        "isMelee": true,
+        "rarity": 1
+    },
+    "Martello_Guerra": {
+        "description": "Martello da Guerra",
+        "type": "Contundente",
+        "bonus": 1,
+        "num_dice": 1,
+        "max_dice": 8,
+        "isMelee": true,
+        "rarity": 1
+    },
+    "Morning_Star": {
+        "description": "Morning Star",
+        "type": "Contundente",
+        "bonus": 1,
+        "num_dice": 1,
+        "max_dice": 8,
+        "isMelee": true,
+        "rarity": 1
+    },
+    "Balestra_Leggera": {
+        "description": "Balestra Leggera",
+        "type": "Perforante",
+        "bonus": 2,
+        "num_dice": 1,
+        "max_dice": 8,
+        "isMelee": false,
+        "rarity": 2
+    },
+    "Spadone": {
+        "description": "Spada a due mani",
+        "type": "Tagliente",
+        "bonus": 1,
+        "num_dice": 2,
+        "max_dice": 6,
+        "isMelee": true,
+        "rarity": 3
+    },
+    "Balestra_Pesante": {
+        "description": "Balestra Pesante",
+        "type": "Perforante",
+        "bonus": 2,
+        "num_dice": 1,
+        "max_dice": 10,
+        "isMelee": false,
+        "rarity": 3
+    },
+    "Gran_Martello": {
+        "description": "Gran Martello",
+        "type": "Contundente",
+        "bonus": 1,
+        "num_dice": 2,
+        "max_dice": 6,
+        "isMelee": true,
+        "rarity": 3
+    },
+    "Bacchetta_Gelo_Profondo": {
+        "description": "Bacchetta di Gelo Profondo",
+        "type": "Gelo",
+        "bonus": 2,
+        "num_dice": 1,
+        "max_dice": 10,
+        "isMelee": false,
+        "rarity": 3
+    },
+    "Bacchetta_Raggio_Fuoco": {
+        "description": "Bacchetta di Raggio di Fuoco",
+        "type": "Fuoco",
+        "bonus": 2,
+        "num_dice": 1,
+        "max_dice": 10,
+        "isMelee": false,
+        "rarity": 3
+    },
+    "Bacchetta_Freccia_Melf": {
+        "description": "Bacchetta di Freccia Acida di Melf",
+        "type": "Acido",
+        "bonus": 2,
+        "num_dice": 2,
+        "max_dice": 6,
+        "isMelee": false,
+        "rarity": 4
+    },
+    "Bacchetta_Fulmine": {
+        "description": "Bacchetta di Fulmine",
+        "type": "Elettrico",
+        "bonus": 3,
+        "num_dice": 2,
+        "max_dice": 6,
+        "isMelee": false,
+        "rarity": 5
+    }
+}

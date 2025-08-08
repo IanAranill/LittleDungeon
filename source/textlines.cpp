@@ -1,14 +1,13 @@
 #include "headers/dungeon.h"
 #include <cstdlib> // Per rand()
 #include <ctime>   // Per time()
-#include <fstream> // Per la gestione dei file
-#include "json.hpp" // Include la libreria JSON
+ // Per la gestione dei file
 
-using json = nlohmann::json; // Crea un alias per comodità
+using namespace std;
 
 // Metodo per caricare linee di testo specifiche da un file JSON
 string Textlines::generate_lines(string group) {
-    ifstream inputFile("lang/it.json"); // Apri il file JSON
+    ifstream inputFile("./lang/it.json"); // Apri il file JSON
     if (!inputFile.is_open()) {
         throw runtime_error("Could not open the file!"); // Usa runtime_error per le eccezioni
     }

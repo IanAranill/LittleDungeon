@@ -25,6 +25,7 @@ int main()
     srand(time(NULL));
 
     Textlines text;
+    Database db = Database();
 
     char ingr;
     cout << "Benvenuto avventuriero, sei pronto ad affrontare il piccolo Dungeon? \n (y/n): ";
@@ -111,7 +112,7 @@ int main()
                     << (isTreasure ? "ci sono un " + mostro.nome + " e una cassa con dentro del tesoro" : "c'è un " + mostro.nome) << endl;
         //combattimento
 
-            cout << '\n' << mostro.nome << text.generate_lines("enter") << endl;
+            cout << '\n' << text.generate_lines("enterRoom") << endl;
             do{
                 turn(PG, mostro);
             }while(PG.currentDmg < PG.HP && mostro.currentDmg < mostro.HP);

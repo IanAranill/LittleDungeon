@@ -12,12 +12,12 @@ int diffSelection(int& minPiani, int& maxPiani, int& minStanze, int& maxStanze, 
     do{
         er = false;
         cout << "Selezionare la difficoltà desiderata:\n"
-            << "1) Bimbo (nemici semplici, Dungeon grande, niente Boss)\n"
+            << "1) Popolano (nemici semplici, Dungeon grande, niente Boss)\n"
             << "2) Scudiero (nemici semplici, Dungeon standard)\n"
             << "3) Avventuriero (tutti i nemici, Dungeon stanard)\n"
             << "4) Veterano (tutti i nemici, Dungeon grande, Boss multipli)\n"
             << "5) Eroe (tutti i nemici, Dungeon piccolo)\n"
-            << "6) Eroe Grandioso (tutti i nemici, Dungeon piccolo, Boss multipli)\n";
+            << "6) Grande Eroe (tutti i nemici, Dungeon piccolo, Boss multipli)\n";
         if(!get_int(choice))
             er = true;
     }while(er || choice < 1 || choice > 6);
@@ -70,7 +70,7 @@ void turn(Hero& PG, Creature& mostro)
         if(PG.toHit() >= mostro.AC)
         {
             short dmg = PG.inventario.armi[PG.currentWeaponIndex].damage();
-            mostro.hit(dmg, PG.inventario.armi[PG.currentWeaponIndex].tipo);
+            mostro.hit(dmg, PG.inventario.armi[PG.currentWeaponIndex].type);
         }
         else
             cout << "L'hai mancato con " << PG.inventario.armi[PG.currentWeaponIndex].description << endl;

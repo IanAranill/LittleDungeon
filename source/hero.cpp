@@ -154,7 +154,7 @@ void Hero::chooseWeapon()
     for(int i = 0; i < inventario.armi.size(); ++i)
     {
         Weapon arma = inventario.armi[i];
-        cout << i+1 << ") " << arma.description << " -> " << "tipo: " << dmg_type_to_string(arma.tipo) << ", danno: " 
+        cout << i+1 << ") " << arma.description << " -> " << "tipo: " << dmg_type_to_string(arma.type) << ", danno: " 
             << arma.num_dice << "d" << arma.max_dice << ", colpire: +" << arma.bonus + livello << endl;
     }
     cout << "- ";

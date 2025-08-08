@@ -4,6 +4,8 @@
 #include <string>
 #include <math.h>
 #include <time.h>
+#include "json.hpp"
+#include <fstream>
 
 #ifdef _WIN32
 #define CLEAR "cls"
@@ -18,10 +20,13 @@
 #define INT_MAX 2147483647
 
 using namespace std;
+using json = nlohmann::json;
 
 class Weapon;
 class Hero;
 class Treasure;
+class Database;
+class Creature;
 
 enum dmg_type
 {
@@ -40,6 +45,7 @@ enum class Mostri_GS1
     goblin,
     ratto_gigante,
     bandito,
+    coboldo,
     dimensione
 };
 
@@ -49,6 +55,7 @@ enum class Mostri_GS2
     zombie,
     gnoll,
     hobgoblin,
+    sciame_di_ragni,
     dimensione
 };
 
@@ -57,6 +64,7 @@ enum class Mostri_GS3
     bugbear,
     goblin_stregone,
     orco,
+    armatura_animata,
     dimensione
 };
 
@@ -117,7 +125,7 @@ public:
     static const Weapon Pugnale;
     static const Weapon Morning_Star;
 
-    dmg_type tipo;
+    dmg_type type;
     int bonus;
     bool isMelee;
     string description;
@@ -125,11 +133,25 @@ public:
     int max_dice;
     int rarity;
 
-    Weapon(const string& description_, dmg_type tipo_,int bonus_, int num_dice_, int max_dice_, bool isMelee_ = true, int rarity_ = 0)
-        : description(description_), tipo(tipo_), bonus(bonus_), num_dice(num_dice_), max_dice(max_dice_), isMelee(isMelee_), rarity(rarity_) {}
+    Weapon(const string& description_, dmg_type type_,int bonus_, int num_dice_, int max_dice_, bool isMelee_ = true, int rarity_ = 0)
+        : description(description_), type(type_), bonus(bonus_), num_dice(num_dice_), max_dice(max_dice_), isMelee(isMelee_), rarity(rarity_) {}
     Weapon(const Weapon& w) {*this = w;}
     int damage();
     void printStats(const int);
+    static Weapon getJson(const string name);
+    // rarity algorithm -> 1 per ogni classe di dado sopra il d8, 1 per ogni punto di bonus (si possono scambiare i "punti tra bonus e classi dado")
+};
+
+class Database
+{
+private:
+    json weaponsDB;
+    json creaturesDB;
+public:
+    Database();
+
+    Weapon getWeapon(const string& weaponName);
+    Creature getCreature(const string& creatureName);
 };
 
 class Treasure
