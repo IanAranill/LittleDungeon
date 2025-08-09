@@ -6,6 +6,8 @@
 #include <time.h>
 #include "json.hpp"
 #include <fstream>
+#include <cstdlib>
+#include <ctime>
 
 #ifdef _WIN32
 #define CLEAR "cls"
@@ -27,6 +29,7 @@ class Hero;
 class Treasure;
 class Database;
 class Creature;
+extern Database db;
 
 enum dmg_type
 {
@@ -99,7 +102,7 @@ class Weapon
 private:
     
 public:
-    static const Weapon Arco_Lungo;
+    /*static const Weapon Arco_Lungo;
     static const Weapon Spada_Lunga;
     static const Weapon Ascia_Bipenne;
     static const Weapon Liuto;
@@ -123,7 +126,7 @@ public:
     static const Weapon Balestra_Pesante;
     static const Weapon Gran_Martello;
     static const Weapon Pugnale;
-    static const Weapon Morning_Star;
+    static const Weapon Morning_Star;*/
 
     dmg_type type;
     int bonus;

@@ -9,15 +9,15 @@ void Hero::charCreation()
         Er = false;
         cout << "Selezionare una clase" << '\n'
         << "1) Guerriero: 16 HP, 14 AC, 4 armi trasportabili, resistente tagliente" << '\n'
-        << "\tarma: " ; Weapon(Weapon::Spada_Lunga).printStats(1);
+        << "\tarma: " ; Weapon(db.getWeapon("Spada_Lunga")).printStats(1);
         cout << "2) Ranger: 15 HP, 15 AC, 4 armi trasportabili, resistente acido" <<'\n'
-        << "\tarma: " ; Weapon(Weapon::Arco_Lungo).printStats(1);
+        << "\tarma: " ; Weapon(db.getWeapon("Arco_Lungo")).printStats(1);
         cout << "3) Barbaro: 18 HP, 13 AC, 5 armi trasportabili, resistente contundente e perforante, vulnerabile acido" << '\n'
-        << "\tarma: " ; Weapon(Weapon::Ascia_Bipenne).printStats(1);
+        << "\tarma: " ; Weapon(db.getWeapon("Ascia_Bipenne")).printStats(1);
         cout << "4) Mago: 12 HP, 16 AC, 4 armi trasportabili, resistente fuoco e gelo, vulnerabile perforante" << '\n'
-        << "\tarma: " ; Weapon(Weapon::Bacchetta_Raggio_Gelo).printStats(1);
+        << "\tarma: " ; Weapon(db.getWeapon("Bacchetta_Raggio_Gelo")).printStats(1);
         cout << "5) Bardo: 14 HP, 15 AC, 5 armi trasportabili, resitente fuoco, vulnerabile gelo" << '\n'
-        << "\tarma: " ; Weapon(Weapon::Liuto).printStats(1);
+        << "\tarma: " ; Weapon(db.getWeapon("Liuto")).printStats(1);
         cout << "Scegi il tuo eroe: ";
         if(!get_int(choice))
             Er = true;
@@ -95,7 +95,7 @@ void Hero::dataClass(int choice)
             inventario.numArmi = 4;
             vuln = {};
             res = {Tagliente};
-            inventario.armi = {Weapon::Spada_Lunga};
+            inventario.armi = {db.getWeapon("Spada_Lunga")};
             break;
         case 2:
             HP = 15;
@@ -103,7 +103,7 @@ void Hero::dataClass(int choice)
             inventario.numArmi = 4;
             vuln = {};
             res = {Acido};
-            inventario.armi = {Weapon::Arco_Lungo};
+            inventario.armi = {db.getWeapon("Arco_Lungo")};
             break;
         case 3:
             HP = 18;
@@ -111,7 +111,7 @@ void Hero::dataClass(int choice)
             inventario.numArmi = 5;
             vuln = {Acido};
             res = {Contundente, Perforante};
-            inventario.armi = {Weapon::Ascia_Bipenne};
+            inventario.armi = {db.getWeapon("Ascia_Bipenne")};
             break;
         case 4:
             HP = 12;
@@ -119,7 +119,7 @@ void Hero::dataClass(int choice)
             inventario.numArmi = 4;
             vuln = {Perforante};
             res = {Fuoco, Gelo};
-            inventario.armi = {Weapon::Bacchetta_Raggio_Gelo};
+            inventario.armi = {db.getWeapon("Bacchetta_Raggio_Gelo")};
             break;
         case 5:
             HP = 14;
@@ -127,7 +127,7 @@ void Hero::dataClass(int choice)
             inventario.numArmi = 5;
             vuln = {Gelo};
             res = {Fuoco};
-            inventario.armi = {Weapon::Liuto};
+            inventario.armi = {db.getWeapon("Liuto")};
             break;
     }
 }

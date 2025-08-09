@@ -1,7 +1,4 @@
 #include "headers/dungeon.h"
-#include <cstdlib> // Per rand()
-#include <ctime>   // Per time()
- // Per la gestione dei file
 
 using namespace std;
 

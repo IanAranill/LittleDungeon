@@ -14,10 +14,10 @@ int diffSelection(int& minPiani, int& maxPiani, int& minStanze, int& maxStanze, 
         cout << "Selezionare la difficoltà desiderata:\n"
             << "1) Popolano (nemici semplici, Dungeon grande, niente Boss)\n"
             << "2) Scudiero (nemici semplici, Dungeon standard)\n"
-            << "3) Avventuriero (tutti i nemici, Dungeon stanard)\n"
-            << "4) Veterano (tutti i nemici, Dungeon grande, Boss multipli)\n"
-            << "5) Eroe (tutti i nemici, Dungeon piccolo)\n"
-            << "6) Grande Eroe (tutti i nemici, Dungeon piccolo, Boss multipli)\n";
+            << "3) Veterano (tutti i nemici, Dungeon stanard)\n"
+            << "4) Avventuriero (tutti i nemici, Dungeon grande, Boss multipli)\n"
+            << "5) Cavaliere (tutti i nemici, Dungeon piccolo)\n"
+            << "6) Eroe (tutti i nemici, Dungeon piccolo, Boss multipli)\n";
         if(!get_int(choice))
             er = true;
     }while(er || choice < 1 || choice > 6);

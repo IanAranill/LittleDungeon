@@ -1,6 +1,5 @@
 #include "headers/dungeon.h"
-
-
+Database db = Database();
 
 int main()
 {
@@ -25,7 +24,6 @@ int main()
     srand(time(NULL));
 
     Textlines text;
-    Database db = Database();
 
     char ingr;
     cout << "Benvenuto avventuriero, sei pronto ad affrontare il piccolo Dungeon? \n (y/n): ";

@@ -1,6 +1,5 @@
 #include "headers/dungeon.h"
 
-
 Creature Generate(Mostri_GS1 nome_mostro)
 {
     int difference = randRange(-1, 1);
@@ -45,7 +44,7 @@ Creature Generate(Mostri_GS1 nome_mostro)
             tmp.GS = 1;
             tmp.nome = "Bandito";
             tmp.res = {};
-            vector<Weapon> BanditWeapons = {Weapon::Lancia, Weapon::Arco_Corto, Weapon::Mazza_Leggera, Weapon::Pugnale};
+            vector<Weapon> BanditWeapons = {db.getWeapon("Lancia"), db.getWeapon("Arco_Corto"), db.getWeapon("Mazza_Leggera"), db.getWeapon("Pugnale")};
             tmp.armi.push_back(BanditWeapons[randRange(0, BanditWeapons.size()-1)]);
             break;
         }
@@ -56,7 +55,7 @@ Creature Generate(Mostri_GS1 nome_mostro)
             tmp.GS = 1;
             tmp.nome = "Coboldo";
             tmp.res = {Tagliente};
-            vector<Weapon> CoboldWeapons = {Weapon::Pugnale, Weapon::Balestra_Leggera, Weapon::Mazza_Leggera};
+            vector<Weapon> CoboldWeapons = {db.getWeapon("Pugnale"), db.getWeapon("Balestra_Leggera"), db.getWeapon("Mazza_Leggera")};
             tmp.armi.push_back(CoboldWeapons[randRange(0, CoboldWeapons.size() - 1)]);
             break;
         }
@@ -101,7 +100,7 @@ Creature Generate(Mostri_GS2 nome_mostro)
             tmp.GS = 2;
             tmp.nome = "Hobgoblin";
             tmp.res = {Contundente};
-            vector<Weapon> HobgoblinWeapons = {Weapon::Lancia, Weapon::Spada_Lunga, Weapon::Mazza_Leggera, Weapon::Alabarda};
+            vector<Weapon> HobgoblinWeapons = {db.getWeapon("Lancia"), db.getWeapon("Spada_Lunga"), db.getWeapon("Mazza_Leggera"), db.getWeapon("Alabarda")};
             tmp.armi.push_back(HobgoblinWeapons[randRange(0, HobgoblinWeapons.size()-1)]);
             break;
         }
@@ -124,7 +123,7 @@ Creature Generate(Mostri_GS2 nome_mostro)
             tmp.HP = randRange(10, 18);
             tmp.GS = 2;
             tmp.nome = "Gnoll";
-            vector<Weapon> GnollWeapons = {Weapon::Mazzafrusto_Leggero, Weapon::Martello_Guerra, Weapon::Alabarda};
+            vector<Weapon> GnollWeapons = {db.getWeapon("Mazzafrusto_Leggero"), db.getWeapon("Martello_Guerra"), db.getWeapon("Alabarda")};
             tmp.armi.push_back(GnollWeapons[randRange(0, GnollWeapons.size()-1)]);
             break;
         }
@@ -145,7 +144,7 @@ Creature Generate(Mostri_GS3 nome_mostro)
             tmp.HP = randRange(12, 22);
             tmp.GS = 3;
             tmp.nome = "Bugbear";
-            vector<Weapon> BugbearWeapons = {Weapon::Mazzafrusto_Pesante, Weapon::Alabarda, Weapon::Ascia_Bipenne, Weapon::Spadone};
+            vector<Weapon> BugbearWeapons = {db.getWeapon("Mazzafrusto_Pesante"), db.getWeapon("Alabarda"), db.getWeapon("Ascia_Bipenne"), db.getWeapon("Spadone")};
             tmp.armi.push_back(BugbearWeapons[randRange(0, BugbearWeapons.size()-1)]);
             break;
         }
@@ -157,7 +156,7 @@ Creature Generate(Mostri_GS3 nome_mostro)
             tmp.nome = "Orco";
             tmp.res = {Tagliente, Contundente, Perforante};
             tmp.vuln = {Fuoco, Acido, Elettrico, Gelo};
-            vector<Weapon> OrcWeapons = {Weapon::Ascia_Bipenne, Weapon::Gran_Martello};
+            vector<Weapon> OrcWeapons = {db.getWeapon("Ascia_Bipenne"), db.getWeapon("Gran_Martello")};
             tmp.armi.push_back(OrcWeapons[randRange(0, OrcWeapons.size()-1)]);
             break;
         }
@@ -223,9 +222,8 @@ Creature Generate(Mostri_GS4 nome_mostro)
             tmp.res = {Gelo, Fuoco};
             tmp.armi = {
                 Weapon("Spada incantata", Tagliente, +3, 1, 10),
-                Weapon::Balestra_Pesante,
-                Weapon::Bacchetta_Gelo_Profondo
-                };
+                db.getWeapon("Balestra_Pesante"),
+                db.getWeapon("Bacchetta_Gelo_Profondo")};
             tmp.multiAttack = false;
             break;
     }
