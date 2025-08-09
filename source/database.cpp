@@ -1,7 +1,7 @@
 #include "headers/dungeon.h"
 
 Database::Database(){
-    ifstream fileW("weaponsDatabase.json");
+    ifstream fileW("./source/weaponsDatabase.json");
 
     if (!fileW.is_open())
     {
@@ -18,7 +18,7 @@ Database::Database(){
         exit(-1);
     }
 
-    ifstream fileC("creaturesDatabase.json");
+    ifstream fileC("./source/creaturesDatabase.json");
 
     if (!fileC.is_open())
     {

@@ -7,7 +7,7 @@ Weapon Treasure::randWeapon() {
 Treasure::Treasure()
 {
     /*Lootable weapons*/
-    vector<Weapon> data = {
+    vector<Weapon> data = { //TODO convertirli in getWeapon
     /*Weapon::Arco_Corto, Weapon::Lancia, Weapon::Mazzafrusto_Leggero, Weapon::Bacchetta_Fulmine,
     Weapon::Alabarda, Weapon::Arco_Lungo, Weapon::Spada_Lunga, Weapon::Ascia_Bipenne,
     Weapon::Bacchetta_Raggio_Gelo, Weapon::Bacchetta_Gelo_Profondo, Weapon::Spadone,

@@ -26,6 +26,24 @@
         "isMelee": true,
         "rarity": 2
     },
+    "Liuto": {
+        "description": "Liuto",
+        "type": "Perforante",
+        "bonus": 3,
+        "num_dice": 1,
+        "max_dice": 6,
+        "isMelee": false,
+        "rarity": -1
+    },
+    "Spada_di_Legno": {
+        "description": "Spada di Legno",
+        "type": "Contundente",
+        "bonus": 0,
+        "num_dice": 1,
+        "max_dice": 4,
+        "isMelee": true,
+        "rarity": -1
+    },
     "Bacchetta_Raggio_Gelo": {
         "description": "Bacchetta di Raggio di Gelo",
         "type": "Gelo",
@@ -35,6 +53,25 @@
         "isMelee": false,
         "rarity": 1
     },
+    "Pugnale": {
+        "description": "Pugnale",
+        "type": "Perforante",
+        "bonus": 1,
+        "num_dice": 1,
+        "max_dice": 4,
+        "isMelee": true,
+        "rarity": 0
+    },
+    "Arco_Corto": {
+        "description": "Arco Corto",
+        "type": "Perforante",
+        "bonus": 1,
+        "num_dice": 1,
+        "max_dice": 6,
+        "isMelee": false,
+        "rarity": 0
+    },
+    
     "Scimitarra": {
         "description": "Scimitarra",
         "type": "Tagliente",
@@ -44,14 +81,41 @@
         "isMelee": true,
         "rarity": 1
     },
-    "Mazzafrusto_Pesante": {
-        "description": "Mazzafrusto Pesante",
+    "Mazzafrusto_Leggero": {
+        "description": "Mazzafrusto Leggero",
         "type": "Contundente",
         "bonus": 0,
         "num_dice": 1,
-        "max_dice": 10,
+        "max_dice": 8,
         "isMelee": true,
         "rarity": 1
+    },
+    "Mazzafrusto_Pesante": {
+        "description": "Mazzafrusto Pesante",
+        "type": "Contundente",
+        "bonus": 1,
+        "num_dice": 1,
+        "max_dice": 10,
+        "isMelee": true,
+        "rarity": 2
+    },
+    "Lancia": {
+        "description": "Lancia",
+        "type": "Perforante",
+        "bonus": 1,
+        "num_dice": 1,
+        "max_dice": 8,
+        "isMelee": true,
+        "rarity": 1
+    },
+    "Lancia_Corta": {
+        "description": "Lancia Corto",
+        "type": "Perforante",
+        "bonus": 1,
+        "num_dice": 1,
+        "max_dice": 6,
+        "isMelee": true,
+        "rarity": 0
     },
     "Alabarda": {
         "description": "Alabarda",
