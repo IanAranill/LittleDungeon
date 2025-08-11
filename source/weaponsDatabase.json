@@ -71,7 +71,6 @@
         "isMelee": false,
         "rarity": 0
     },
-    
     "Scimitarra": {
         "description": "Scimitarra",
         "type": "Tagliente",
@@ -89,6 +88,15 @@
         "max_dice": 8,
         "isMelee": true,
         "rarity": 1
+    },
+    "Mazza_Leggera": {
+        "description": "Mazza Leggera",
+        "type": "Contundente",
+        "bonus": 1,
+        "num_dice": 1,
+        "max_dice": 6,
+        "isMelee": true,
+        "rarity": 0
     },
     "Mazzafrusto_Pesante": {
         "description": "Mazzafrusto Pesante",

@@ -7,14 +7,13 @@ Weapon Treasure::randWeapon() {
 Treasure::Treasure()
 {
     /*Lootable weapons*/
-    vector<Weapon> data = { //TODO convertirli in getWeapon
-    /*Weapon::Arco_Corto, Weapon::Lancia, Weapon::Mazzafrusto_Leggero, Weapon::Bacchetta_Fulmine,
-    Weapon::Alabarda, Weapon::Arco_Lungo, Weapon::Spada_Lunga, Weapon::Ascia_Bipenne,
-    Weapon::Bacchetta_Raggio_Gelo, Weapon::Bacchetta_Gelo_Profondo, Weapon::Spadone,
-    Weapon::Mazza_Leggera, Weapon::Lancia_Corta, Weapon::Martello_Guerra, Weapon::Bacchetta_Raggio_Fuoco,
-    Weapon::Bacchetta_Freccia_Melf, Weapon::Balestra_Leggera, Weapon::Balestra_Pesante, Weapon::Gran_Martello,
-    Weapon::Pugnale, Weapon::Scimitarra, Weapon::Mazzafrusto_Pesante, Weapon::Morning_Star*/
-    };
+    vector<Weapon> data = {
+    db.getWeapon("Arco_Corto"), db.getWeapon("Lancia"), db.getWeapon("Mazzafrusto_Leggero"), db.getWeapon("Bacchetta_Fulmine"),
+    db.getWeapon("Alabarda"), db.getWeapon("Arco_Lungo"), db.getWeapon("Spada_Lunga"), db.getWeapon("Ascia_Bipenne"),
+    db.getWeapon("Bacchetta_Raggio_Gelo"), db.getWeapon("Bacchetta_Gelo_Profondo"), db.getWeapon("Spadone"),
+    db.getWeapon("Mazza_Leggera"), db.getWeapon("Lancia_Corta"), db.getWeapon("Martello_Guerra"), db.getWeapon("Bacchetta_Raggio_Fuoco"),
+    db.getWeapon("Bacchetta_Freccia_Melf"), db.getWeapon("Balestra_Leggera"), db.getWeapon("Balestra_Pesante"), db.getWeapon("Gran_Martello"),
+    db.getWeapon("Pugnale"), db.getWeapon("Scimitarra"), db.getWeapon("Mazzafrusto_Pesante"), db.getWeapon("Morning_Star")};
 
     for(Weapon w: data)
         for(int i = 0; i < 10 - w.rarity; ++i)

@@ -7,7 +7,7 @@ void Hero::charCreation()
     cout << "\nCreazione del Personaggio:" << endl;
     do{
         Er = false;
-        cout << "Selezionare una clase" << '\n'
+        cout << "Selezionare una classe" << '\n'
         << "1) Guerriero: 16 HP, 14 AC, 4 armi trasportabili, resistente tagliente" << '\n'
         << "\tarma: " ; Weapon(db.getWeapon("Spada_Lunga")).printStats(1);
         cout << "2) Ranger: 15 HP, 15 AC, 4 armi trasportabili, resistente acido" <<'\n'
